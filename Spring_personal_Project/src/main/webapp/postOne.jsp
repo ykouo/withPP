@@ -32,22 +32,45 @@
 	<mytag:header/>
 
     <div class="ftco-blocks-cover-1">
-      <div class="ftco-cover-1 overlay" style="background-image: url('images/hero_2.jpg')">
+      <div class="ftco-cover-1 overlay" style="background-image: url('${data.thumnail}')">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-             <form action="editBoard.do" method="post" > 
-				<input type="hidden" name="bid" value="${data.bid}">
+             <form action="goEditPost.do" method="post" > 
+				<input type="hidden" name="pnum" value="${data.pnum}">
 				<input type="hidden" name="mid" value="${data.mid}">
-				<input type="hidden" name="wdate" value="${data.wdate}">
+				<input type="hidden" name="nickname" value="${data.nickname}">
 				<input type="hidden" name="title" value="${data.title}">
+				<input type="hidden" name="thumnail" value="${data.thumnail}">
 				<input type="hidden" name="content" value="${data.content}">
-            	  <span class="d-block mb-3 text-white" data-aos="fade-up">${data.wdate} <span class="mx-2 text-primary">&bullet;</span> by ${data.mid}</span>
-                	<h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">${data.title}</h1>
-           		<c:if test="${mem eq data.mid}">
+				<input type="hidden" name="locaddress" value="${data.locaddress}">
+				<input type="hidden" name="loccall" value="${data.loccall}">
+				<input type="hidden" name="location" value="${data.location}">
+				<input type="hidden" name="cnt" value="${data.cnt}">
+				<input type="hidden" name="heart" value="${data.heart}">
+				<input type="hidden" name="wdate" value="${data.wdate}">
+            	 <span class="d-block mb-3 text-white" data-aos="fade-up">            	
+            	 	 <c:if test ="${data.heart eq 'N'}">
+            	 		<a href="updateHeart.do?pnum=${data.pnum}&heart=Y">🤍</a>
+            	 	</c:if>
+            	 	<c:if test ="${data.heart eq 'Y'}">
+            	 		<a href="updateHeart.do?pnum=${data.pnum}&heart=N">🖤</a>
+            		</c:if>
+            	 </span>
+            	  <span class="d-block mb-3 text-white" data-aos="fade-up">${data.wdate} 
+            	  <span class="mx-2 text-primary">&bullet;</span> by ${data.mid} <span class="mx-2 text-primary">&bullet;</span> 조회수 [${data.cnt}]</span>
+            	  
+                	<h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">[${data.location}]${data.title}</h1>
+           		<c:if test="${mem.mid eq data.mid}">
            		<input type="submit" value="수정하기">
            	 	</c:if>
            	 </form>
+           	 <c:if test="${mem.mid eq data.mid}">
+           	  <form action="deletePost.do" method="post" > 
+           	 	<input type="hidden" name="pnum" value="${data.pnum}">
+           	 	<input type="submit" value="삭제하기">
+           	 </form>
+           	 </c:if>
             </div>
           </div>
         </div>
@@ -59,12 +82,12 @@
         <div class="row">
           <div class="col-md-8 blog-content">
             <p class="lead">${data.content}</p>
-            <blockquote><p>내용1</p></blockquote>
+            <blockquote><p>${data.loccall}</p></blockquote>
 
-            <blockquote><p>내용2</p></blockquote>
+            <blockquote><p>${data.locaddress}</p></blockquote>
 
             <div class="pt-5">
-              <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              <p>Categories:${data.location} <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
             </div>
 
 

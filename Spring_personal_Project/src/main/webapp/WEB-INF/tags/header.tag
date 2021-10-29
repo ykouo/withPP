@@ -9,9 +9,13 @@
         </div>
     </c:if>
     <c:if test="${! empty mem}">
+    	<form name="mypage" action="goMypage.do" method="post">
+				<input type="hidden" name="mid" value="${mem.mid}">
+				<input type="hidden" name="mpw" value="${mem.mpw}">
+		</form> 
     	<div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
-			<span class="nickname">${mem}님
-			<a href="logout.do" class="login nav-link" style="display:inline-block;">mypage</a>
+			<span class="nickname">[${mem.nickname}]님
+			<a href="#" onclick="javascript:document.mypage.submit();" class="login nav-link" style="display:inline-block;">Mypage</a>
 			<a href="logout.do" class="login nav-link" style="display:inline-block;">logout</a></span> <!-- class="nav-link" -->
         </div> 
     </c:if>    
@@ -42,7 +46,7 @@
               <nav class="site-navigation text-left mr-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                   <li><a href="about.html" class="nav-link">what</a></li>
-                  <li><a href="showBoardList.do" class="nav-link">Blog</a></li>
+                  <li><a href="showPostList.do" class="nav-link">Blog</a></li>
                   <li><a href="contact.jsp" class="nav-link">Contact</a></li>
                 </ul>
               </nav>

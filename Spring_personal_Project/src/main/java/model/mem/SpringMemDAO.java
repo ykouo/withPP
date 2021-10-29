@@ -1,4 +1,4 @@
-package model.mem;
+/*package model.mem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ class MemRowMapper implements RowMapper<MemVO> {
 	}
 }
 
-@Repository
+//@Repository
 public class SpringMemDAO {
 	// SQL문 
 	private final String insertMemSQL ="INSERT INTO MEM (MID,MPW,MNAME,CALL,ROLE) VALUES (?,?,?,?,?)";
@@ -34,7 +34,7 @@ public class SpringMemDAO {
 	private final String deleteMemSQL =	"DELETE FROM MEM WHERE MID=? AND MPW=?";
 
 	// JDBCTemplete
-	@Autowired
+	//@Autowired
 	private JdbcTemplate jdbcTemplate;
 	// C 회원가입기능 
 	public void insertMem(MemVO vo) { 
@@ -59,3 +59,4 @@ public class SpringMemDAO {
 	} 
 
 }
+*/

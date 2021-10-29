@@ -1,4 +1,4 @@
-package model.mem;
+/*package model.mem;
 
 import java.sql.Date;
 
@@ -60,3 +60,4 @@ public class MemVO {
 	
 	
 }
+*/

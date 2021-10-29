@@ -1,4 +1,4 @@
-package model.mem;
+/*package model.mem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import model.common.JDBC;
 
 // @Component를 상속받는 @Repository
-@Repository("memDAO")
+//@Repository("memDAO")
 public class MemDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
@@ -163,3 +163,4 @@ public class MemDAO {
 		return res;
 	}
 }
+*/

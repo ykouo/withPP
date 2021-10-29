@@ -1,4 +1,4 @@
-package controller.action;
+/*package controller.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,7 +24,7 @@ public class MemController {
 		}else{
 			System.out.println("로그인 실패");
 			return "redirect:login.jsp"; // redirect: <-- 기존의 ViewResolver의 설정을 무시하고 redirect하라는 의미
-			// 정보없이 View서비스 되는것을 막기위해 url 요청으로 
+			// 정보없이 View서비스 되는것을 막기위해 url 요청으로 S
 		}	
 	}
 	@RequestMapping(value="/login.do",method=RequestMethod.GET)
@@ -48,3 +48,4 @@ public class MemController {
 		}
 	}
 }
+*/

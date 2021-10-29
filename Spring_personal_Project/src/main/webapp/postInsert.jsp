@@ -28,7 +28,7 @@
 			</div>
 			<div class="site-mobile-menu-body"></div>
 		</div>
-
+	</div>
 		<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 		<mytag:header />
 
@@ -39,6 +39,7 @@
 					<div class="row align-items-center justify-content-center">
 						<div class="col-lg-6 text-center">
 							<h1>WritePage</h1>
+							<span>작성자 아이디 : ${mem.mid}</span><span>작성자 닉네임 : ${mem.nickname}</span>
 						</div>
 					</div>
 				</div>
@@ -46,26 +47,58 @@
 		</div>
 		<div class="site-section">
 			<div class="container">
-				<div class="row" style="justify-content: center;">
-					<div class="col-lg-8 mb-5">
-						<form action="newpost.do" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="mid" value="${mem}">
-							<div class="form-group row">
-								<div class="col-md-6 mb-4 mb-lg-0">
-									<input type="text" class="form-control" name="title"placeholder="제목입력"> 
-									<input type="file" name="fileUpLoad">
-									<!-- <div class="col-md-12"> -->
-									<textarea name="content" id="" class="form-control"placeholder="Write your message." cols="30" rows="10"></textarea>
-								</div>
-							</div>
-							<div class="col-md-6 mr-auto">
-								<input type="submit" class="btn btn-block btn-primary text-white py-3 px-5"value="작성">
-							</div>
+              <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 text-center ">
+						<div class="row align-items-center justify-content-center">
+						<form action="insertPost.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
+							<table> 
+								<tr>
+									<td>제목</td>
+									<td><input type="text" name="title" required="required"></td>
+								</tr>
+								<tr>
+									<td>아이디</td>
+									<td><input type="text" name="mid" value="${mem.mid}" required="required"></td>
+								</tr>
+								<tr>
+									<td>닉네임</td>
+									<td><input type="text" name="nickname" value="${mem.nickname}" required="required"></td>
+								</tr>
+								<tr>
+									<td>썸네일</td>
+								 <td><input type="file" name="fileUpLoad"></td>
+									<!-- <td><input type="text" name="thumnail" value="images\\thumnail.png"></td> -->
+								</tr>
+								<tr>
+									<td>내용</td>
+									<td><input type="text" name="content" required="required"></td>
+								</tr>
+								<tr>
+									<td>지역</td>
+									<td><input type="text" name="location" required="required"></td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td><input type="text" name="locaddress" required="required"></td>
+								</tr>
+								<tr>
+									<td>전화번호</td>
+									<td><input type="text" name="loccall" required="required"></td>
+								</tr>		
+								<tr>
+									<td colspan="2"><input type="submit" value="글작성"></td>
+								</tr>
+							</table>
 						</form>
+						</div>
 					</div>
 				</div>
+
 			</div>
+
+
 		</div>
+		
 
 <!-- footer 태그  -->
 	<mytag:footer />

@@ -11,7 +11,7 @@ public class CommonExceptionHandler {
 	public ModelAndView handleNullPointerException(Exception e) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("exception", e);
-		mav.setViewName("error/error.jsp");
+		mav.setViewName("error/error404.jsp");
 		return mav;
 	}
 	

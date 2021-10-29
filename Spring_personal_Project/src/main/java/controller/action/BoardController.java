@@ -1,4 +1,4 @@
-package controller.action;
+/*package controller.action;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,12 +110,12 @@ public class BoardController {
 		model.addAttribute("data", data);
 
 		return "boardEdit.jsp";
-/*
+
 		System.out.println("여기 왔어?");
 		bvo.setBid(Integer.parseInt(request.getParameter("bid")));
 		BoardVO data = bdao.getBoard(bvo);
 		model.addAttribute("data", data);
-		return "redirect:editBoard.jsp";*/
+		return "redirect:editBoard.jsp";
 	}
 	@RequestMapping("/updatepost.do")
 	public String updatepost(BoardVO bvo,Model model) {
@@ -162,3 +162,4 @@ public class BoardController {
 	}
 
 }
+*/

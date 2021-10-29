@@ -1,4 +1,4 @@
-package model.mem;
+/*package model.mem;
 
 import java.util.List;
 
@@ -10,3 +10,4 @@ public interface MemService {
 	List<MemVO> getMemList(MemVO vo); // R - select all 1
 
 }
+*/

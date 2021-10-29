@@ -1,29 +1,21 @@
 <!--  About 페이지  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>     
 <!doctype html>
 <html lang="en">
 
   <head>
     <title>withPP - About withPP</title>
+    <!--  파비콘 추가  -->
+    <mytag:Fabicon/>
+ 	<!-- 구글맵 API 추가 -->
+	<script src="http://maps.google.com/maps/api/js?key=구글맵API등록&region=kr"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
-
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
+	<!-- styleLink모음 태그 -->
+	<mytag:styleLink/>  
   </head>
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -39,62 +31,9 @@
         </div>
         <div class="site-mobile-menu-body"></div>
       </div>
+	<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
+	<mytag:header/>
 
-
-
-   <header class="site-navbar site-navbar-target" role="banner">
-	<!-- 로그인 버튼 -->
-	<c:if test="${empty mem}">
-		<div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
-			<a href="login.jsp" class="login nav-link">login</a> <!-- class="nav-link" -->
-        </div>
-    </c:if>
-    <c:if test="${! empty mem}">
-    	<div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
-			<span class="nickname">${mem}님
-			<a href="logout.do" class="login nav-link" style="display:inline-block;">mypage</a>
-			<a href="logout.do" class="login nav-link" style="display:inline-block;">logout</a></span> <!-- class="nav-link" -->
-        </div> 
-    </c:if>    
-    <!-- /로그인 버튼 -->  
-        <div class="container">
-          <div class="row align-items-center position-relative">
-	<!-- 메뉴바   -->
-            <div class="col-lg-4">
-              <nav class="site-navigation text-right ml-auto " role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li class="active"><a href="index.jsp" class="nav-link">Home</a></li>
-                  <li><a href="AboutwithPP.jsp" class="nav-link">About</a></li>
-                  <li><a href="services.html" class="nav-link">Services</a></li>
-                </ul>
-              </nav>
-            </div>
-      
-     <!-- 메인 로고   -->     
-            <div class="col-lg-4 text-center">
-              <div class="site-logo">
-                <a href="index.jsp">with<b>PP</b></a>
-              </div>
-	 <!-- /메인 로고   --> 
-
-              <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white"><span class="icon-menu h3 text-white"></span></a></div>
-            </div>
-            <div class="col-lg-4">
-              <nav class="site-navigation text-left mr-auto " role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="about.html" class="nav-link">what</a></li>
-                  <li><a href="showBoardList.do" class="nav-link">Blog</a></li>
-                  <li><a href="contact.jsp" class="nav-link">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-	<!-- /메뉴바   -->  
-      </header>
-
-    
-    
     <div class="ftco-blocks-cover-1">
         <div class="ftco-cover-1" style="background-image: url('images/hero_1.jpg');">
             <div class="container">
