@@ -96,8 +96,11 @@ public class PostForCafeController {
 			vo.setThumnail("image/"+filename);
 			fileUpLoad.transferTo(new File("C:\\Users\\ykouo\\git\\withPP\\Spring_personal_Project\\src\\main\\webapp\\image\\"+filename));
 			pfcafeService.updatePost(vo);
+		}else {
+			System.out.println(vo.getThumnail());
+			vo.setThumnail(vo.getThumnail());
+			pfcafeService.updatePost(vo);
 		}
-		
 		return "redirect:showPost.do?pnum="+vo.getPnum();
 	}
 	// 하트 업데이트 

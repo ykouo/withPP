@@ -66,7 +66,9 @@
 								</tr>
 								<tr>
 									<td>썸네일</td>
-								 <td><input type="file" name="fileUpLoad"></td>
+								 	<td><input type="file" name="fileUpLoad"></td>
+<!-- 									<input type="hidden">
+									 -->
 									<!-- <td><input type="text" name="thumnail" value="images\\thumnail.png"></td> -->
 								</tr>
 								<tr>

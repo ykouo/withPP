@@ -55,13 +55,13 @@
 							<input type="hidden" name="nickname" value="${mem.nickname}">
 							<div class="form-group row">
 								<div class="col-md-6 mb-4 mb-lg-0">
-									<input type="text" class="form-control" name="title" value="${data.title}" > 
-									<%-- <input type="hidden" name="thumnail" value="${data.thumnail}"> --%>
+									<input type="text" class="form-control" name="title" value="${data.title}" required="required" > 
+									<input type="hidden" name="thumnail" value="${data.thumnail}">
 									<input type="file" name="fileUpLoad">
-									<input type="text" class="form-control" name="location" value="${data.location}" >
-									<input type="text" class="form-control" name="locaddress" value="${data.locaddress}" >
-									<input type="text" class="form-control" name="loccall" value="${data.loccall}">
-									<textarea name="content" class="form-control" cols="30" rows="10" style="resize: none;">${data.content }</textarea>
+									<input type="text" class="form-control" name="location" value="${data.location}" required="required">
+									<input type="text" class="form-control" name="locaddress" value="${data.locaddress}" required="required">
+									<input type="text" class="form-control" name="loccall" value="${data.loccall}"required="required">
+									<textarea name="content" class="form-control" cols="30" rows="10" style="resize: none;" required="required">${data.content}</textarea>
 								</div>
 							</div>
 							<div class="col-md-6 mr-auto">

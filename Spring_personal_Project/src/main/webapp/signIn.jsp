@@ -79,23 +79,25 @@
 								</tr>
 								<tr>
 									<td>ADDRESS</td>
-									<td><input id="postcode" type="text" name="address" placeholder="우편번호"></td>
-									<td><input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>	
-									<td><input type="text" id="roadAddress" name="address" readonly placeholder="주소" /><br></td>
-									<td><input type="text" id="detailAddress" name="address" placeholder="상세 주소" /><br></td>	
+									<td><input id="postcode" type="text" name="address" style="width:100px;" placeholder="우편번호">    <input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>
+								<tr>
+									<td colspan="2"><input type="text" id="roadAddress" name="address" style="width:320px;" readonly placeholder="주소" /><br></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input type="text" id="detailAddress" name="address" style="width:320px;"  placeholder="상세 주소" /><br></td>	
 								</tr>
 								<tr>
 									<td>EMAIL</td>
-									<td colspan="4"><input type="email" name="email" required="required"></td>
+									<td><input type="email" name="email" required="required"></td>
 								</tr>
 								<tr>
 									<td>ROLE</td>
-									<td colspan="4">
+									<td>
 										<input type="radio" name="role" value="USER" checked="checked">회원
 									</td>
 								</tr>
 								<tr >
-									<td colspan="5"><input type="submit" value="회원가입"></td>
+									<td colspan="2"><input type="submit" value="회원가입"></td>
 								</tr>
 							</table>
 						</form>
