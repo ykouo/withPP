@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- styleLink모음 태그 -->
 	<mytag:styleLink/>  
-  </head>
+  </head> 
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -46,7 +46,7 @@
       </div>
 
 <script type="text/javascript">
-Kakao.init('a6e8ea2eaeba1ab7f3b722a275db29ca'); // javascript api키를 입력
+Kakao.init('카카오 developer javascript api key'); // javascript api키를 입력
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
 //카카오로그인
 function kakaoLogin() { // 카카오로그인 메서드 

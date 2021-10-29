@@ -27,12 +27,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping(value="/login.do",method=RequestMethod.GET)
-	public String loginPrint(@ModelAttribute("guest")MemberVO vo) {
-		vo.setMid("test");
-		vo.setMpw("1234");
-		return "login.jsp";
-	}
+
 	@RequestMapping(value="/login.do",method=RequestMethod.POST)
 	public String login(HttpServletRequest request,MemberVO vo) throws  IOException  {
 		

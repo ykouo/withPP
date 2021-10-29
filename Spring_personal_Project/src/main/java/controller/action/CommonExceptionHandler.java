@@ -13,7 +13,7 @@ public class CommonExceptionHandler {
 		mav.addObject("exception", e);
 		mav.setViewName("error/error404.jsp");
 		return mav;
-	}
+	} 
 	
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception e) {

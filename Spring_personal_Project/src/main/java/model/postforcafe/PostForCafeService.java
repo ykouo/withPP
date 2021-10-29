@@ -15,3 +15,4 @@ public interface PostForCafeService {
 	int getPostCnt();
 	List<PostForCafeVO> getPostListPagenation(int startRow, int endRow);
 }
+ 

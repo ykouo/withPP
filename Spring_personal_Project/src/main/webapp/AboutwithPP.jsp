@@ -8,7 +8,7 @@
 
   <head>
     <title>withPP - About withPP</title>
-    <!--  파비콘 추가  -->
+    <!--  파비콘 추가  --> 
     <mytag:Fabicon/>
  	<!-- 구글맵 API 추가 -->
 	<script src="http://maps.google.com/maps/api/js?key=구글맵API등록&region=kr"></script>

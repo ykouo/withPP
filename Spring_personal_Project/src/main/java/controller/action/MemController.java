@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.mem.MemDAO;
 import model.mem.MemVO;
-
+ 
 @Controller
 public class MemController {
 

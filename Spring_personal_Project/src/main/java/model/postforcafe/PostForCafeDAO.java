@@ -29,7 +29,7 @@ class PostForCafeRowMapper implements RowMapper<PostForCafeVO> {
 		return vo;
 	}
 }
-@Repository
+@Repository 
 public class PostForCafeDAO {
 
 	// SQL¹®

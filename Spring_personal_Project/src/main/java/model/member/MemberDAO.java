@@ -29,7 +29,7 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 		
 	}	
 }
-@Repository
+@Repository 
 public class MemberDAO {
 
 	// SQL¹®

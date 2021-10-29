@@ -15,7 +15,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- styleLink모음 태그 -->
 	<mytag:styleLink/>    
-  </head>
+  </head> 
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"> 
     <div class="site-wrap" id="home-section">

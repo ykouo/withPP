@@ -23,7 +23,7 @@ public class PostForCafeServiceImpl implements PostForCafeService{
 	public void updatePost(PostForCafeVO vo) {
 		pfcafeDAO.updatePost(vo);
 	}
-
+ 
 	@Override
 	public void updateHeart(PostForCafeVO vo) {
 		pfcafeDAO.updateHeart(vo);

@@ -11,7 +11,7 @@ public class Pagenation {
 		private int nextPageNum; // 다음 페이지 번호
 		private int finalPageNum; // 마지막 페이지 번호
 		private int totalCount; //  게시글 전체 수 
-		
+		 
 		// Getter & Setter
 		public int getPageSize() {
 			return pageSize;

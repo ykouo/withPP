@@ -14,7 +14,7 @@ public class Crolling {
 	static String cutTitle(String str) { 	
 		str=str.substring(0,str.lastIndexOf("<"));
 		str=str.substring(str.lastIndexOf(">")+1);
-		return str;
+		return str; 
 	}
 	public static void main(String[] args) {
 		// 크롤링해 올 url 지정 

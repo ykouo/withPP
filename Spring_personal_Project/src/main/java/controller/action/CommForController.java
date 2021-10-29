@@ -19,7 +19,7 @@ public class CommForController {
 	public String insertComm(CommForCafeVO vo,Model model) {
 		cfcafeService.insertComm(vo);
 		return "showBoardList.do";
-	}
+	} 
 	@RequestMapping("/clickLike.do")
 	public String updateComm(CommForCafeVO vo,Model model) {
 		cfcafeService.updateComm(vo);

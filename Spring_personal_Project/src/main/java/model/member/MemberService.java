@@ -12,3 +12,4 @@ public interface MemberService {
 	List<MemberVO> getMemberList(MemberVO vo);
 	boolean checkMember(MemberVO vo);
 }
+ 

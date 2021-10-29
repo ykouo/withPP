@@ -21,7 +21,7 @@ public class MemberVO {
 	}
 	public void setMid(String mid) {
 		this.mid = mid;
-	}
+	} 
 	public String getMpw() {
 		return mpw;
 	}

@@ -18,7 +18,7 @@ public class PostForCafeVO {
 	private String heart;//HEART VARCHAR(50) DEFAULT 'N',
 	private String wdate;//WDATE DATE DEFAULT SYSDATE NOT NULL
 	
-	// 파일입출력 변수 
+	// 파일입출력 변수  
 	private MultipartFile fileUpLoad;
 	
 	// 검색용 변수 

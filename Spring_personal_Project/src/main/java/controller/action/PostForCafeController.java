@@ -30,7 +30,7 @@ public class PostForCafeController {
 
 		return "main.jsp";
 	}
-	// 게시글 리스트 
+	// 게시글 리스트  
 	@RequestMapping("/showPostList.do")
 	public String postList(HttpServletRequest request,PostForCafeVO vo,Model model, Pagenation paging) {
 
