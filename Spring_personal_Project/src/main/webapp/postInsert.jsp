@@ -51,6 +51,8 @@
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
 						<form action="insertPost.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
+							<input type="hidden" name="mid" value="${mem.mid}">
+							<input type="hidden" name="nickname" value="${mem.nickname}">
 							<table> 
 								<tr>
 									<td>제목</td>
@@ -58,11 +60,11 @@
 								</tr>
 								<tr>
 									<td>아이디</td>
-									<td><input type="text" name="mid" value="${mem.mid}" required="required"></td>
+									<td><input type="text" name="mid" value="${mem.mid}" required="required" disabled="disabled"></td>
 								</tr>
 								<tr>
 									<td>닉네임</td>
-									<td><input type="text" name="nickname" value="${mem.nickname}" required="required"></td>
+									<td><input type="text" name="nickname" value="${mem.nickname}" required="required" disabled="disabled"></td>
 								</tr>
 								<tr>
 									<td>썸네일</td>
