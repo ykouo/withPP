@@ -11,10 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import model.commforcafe.CommForCafeService;
+import model.commforcafe.CommForCafeVO;
 import model.postforcafe.Pagenation;
 import model.postforcafe.PostForCafeService;
 import model.postforcafe.PostForCafeVO;
@@ -24,6 +25,8 @@ import model.postforcafe.PostForCafeVO;
 public class PostForCafeController {
 	@Autowired
 	private PostForCafeService pfcafeService;
+	@Autowired
+	private CommForCafeService cfcafeService;
 	// 메인 화면으로
 	@RequestMapping("/main.do")
 	public String main() {
@@ -53,10 +56,13 @@ public class PostForCafeController {
 	}
 	// 게시글 상세보기 
 	@RequestMapping("/showPost.do")
-	public String showPost(HttpServletRequest request,PostForCafeVO vo,Model model, Pagenation paging) {
+	public String showPost(HttpServletRequest request,PostForCafeVO vo,CommForCafeVO cvo,Model model, Pagenation paging) {
 		pfcafeService.updateCnt(vo);
 		PostForCafeVO data = pfcafeService.getPost(vo);
 		model.addAttribute("data",data);	
+		List<CommForCafeVO> commData = cfcafeService.getCommList(vo);
+		model.addAttribute("commData",commData);
+		
 		return "postOne.jsp";
 	}
 	// 게시글 추가
@@ -97,8 +103,8 @@ public class PostForCafeController {
 			fileUpLoad.transferTo(new File("C:\\Users\\ykouo\\git\\withPP\\Spring_personal_Project\\src\\main\\webapp\\image\\"+filename));
 			pfcafeService.updatePost(vo);
 		}else {
-			System.out.println(vo.getThumnail());
-			vo.setThumnail(vo.getThumnail());
+			System.out.println(vo.getThumnail()); 
+			vo.setThumnail(vo.getThumnail()); 
 			pfcafeService.updatePost(vo);
 		}
 		return "redirect:showPost.do?pnum="+vo.getPnum();

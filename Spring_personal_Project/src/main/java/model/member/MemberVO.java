@@ -1,5 +1,7 @@
 package model.member;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
 	// 유의사항 DATE를 받으면 400Error 발새하므로 DATE컬럼은 String으로 변경해서 받을것 
 	
@@ -14,7 +16,24 @@ public class MemberVO {
 	private String role;	// 회원,관리자 구분 	// DB: ROLE VARCHAR(50) DEFAULT 'USER',
 	private String accesstoken;// 회원가입 주관	// DB: ACCESS_TOKEN VARCHAR(100) DEFAULT 'withpp',
 	private String mdate;	// 회원가입 일시 	// DB: MDATE DATE DEFAULT SYSDATE
-		
+	private String profileimage; 
+	
+	// 파일입출력 변수  
+	private MultipartFile fileUpLoad;
+	
+	
+	public MultipartFile getFileUpLoad() {
+		return fileUpLoad;
+	}
+	public void setFileUpLoad(MultipartFile fileUpLoad) {
+		this.fileUpLoad = fileUpLoad;
+	}
+	public String getProfileimage() {
+		return profileimage;
+	}
+	public void setProfileimage(String profileimage) {
+		this.profileimage = profileimage;
+	}
 	// Getter & Setter 
 	public String getMid() {
 		return mid;
@@ -82,9 +101,11 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [mid=" + mid + ", mpw=" + mpw + ", nickname=" + nickname + ", phone=" + phone + ", birth="
 				+ birth + ", address=" + address + ", email=" + email + ", role=" + role + ", accesstoken="
-				+ accesstoken + ", mdate=" + mdate + "]";
+				+ accesstoken + ", mdate=" + mdate + ", profileimage=" + profileimage + ", fileUpLoad=" + fileUpLoad
+				+ "]";
 	}
-	
+
+
 	 
 	
 }

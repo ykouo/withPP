@@ -50,47 +50,53 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
-						<form action="insertPost.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
+						<form action="insertPost.do" class="postTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
 							<input type="hidden" name="mid" value="${mem.mid}">
 							<input type="hidden" name="nickname" value="${mem.nickname}">
 							<table> 
 								<tr>
-									<td>제목</td>
-									<td><input type="text" name="title" required="required"></td>
+									<td class="category">미리보기</td>
+								 	<td><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
+   								 	<td><a  href="javascript:void(0);" class="dellink btn">삭제</a></td>
+   								 </tr>
+   								 <tr>	
+   								 	<td class="category">썸네일</td>
+									<td colspan="2"><input type="file" class="hidden_input"" id="imageSelector"
+										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
+										multiple/>
+									</td>
 								</tr>
 								<tr>
-									<td>아이디</td>
-									<td><input type="text" name="mid" value="${mem.mid}" required="required" disabled="disabled"></td>
+									<td class="category">제목</td>
+									<td colspan="2"><input type="text" class="textbox" name="title" required="required"></td>
 								</tr>
 								<tr>
-									<td>닉네임</td>
-									<td><input type="text" name="nickname" value="${mem.nickname}" required="required" disabled="disabled"></td>
+									<td class="category">아이디</td>
+									<td colspan="2"><input type="text" class="textbox" name="mid" value="${mem.mid}" required="required" disabled="disabled"></td>
 								</tr>
 								<tr>
-									<td>썸네일</td>
-								 	<td><input type="file" name="fileUpLoad"></td>
-<!-- 									<input type="hidden">
-									 -->
-									<!-- <td><input type="text" name="thumnail" value="images\\thumnail.png"></td> -->
+									<td class="category">닉네임</td>
+									<td colspan="2"><input type="text" class="textbox" name="nickname" value="${mem.nickname}" required="required" disabled="disabled"></td>
+								</tr>
+
+								<tr>
+									<td class="category">내용</td>
+									<td colspan="2"><input type="text" class="textbox" name="content" required="required"></td>
 								</tr>
 								<tr>
-									<td>내용</td>
-									<td><input type="text" name="content" required="required"></td>
+									<td class="category">지역</td>
+									<td colspan="2"><input type="text" class="textbox" name="location" required="required"></td>
 								</tr>
 								<tr>
-									<td>지역</td>
-									<td><input type="text" name="location" required="required"></td>
+									<td class="category">주소</td>
+									<td colspan="2"><input type="text"class="textbox" name="locaddress" required="required"></td>
 								</tr>
 								<tr>
-									<td>주소</td>
-									<td><input type="text" name="locaddress" required="required"></td>
-								</tr>
-								<tr>
-									<td>전화번호</td>
-									<td><input type="text" name="loccall" required="required"></td>
+									<td class="category">전화번호</td>
+									<td colspan="2"><input type="text" class="textbox"name="loccall" required="required"></td>
 								</tr>		
 								<tr>
-									<td colspan="2"><input type="submit" value="글작성"></td>
+									<td colspan="3" align="center"><input type="submit" class="submitBtn" value="글작성"></td>
 								</tr>
 							</table>
 						</form>
@@ -110,7 +116,7 @@
 	<!-- js리스트 태그 -->
 	<mytag:js />
 	<!-- js추가  -->
-	<script src="js/contact.js"></script>
+	<script src="withPPjs/upload.js"></script>
 </body>
 </html>
 

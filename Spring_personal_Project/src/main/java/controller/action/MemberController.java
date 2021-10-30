@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.member.MemberService;
 import model.member.MemberVO;
@@ -51,8 +53,19 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 	@RequestMapping("/insertMember.do")
-	public String insertMember(HttpServletRequest request,MemberVO vo){
-		memberService.insertMember(vo);
+	public String insertMember(HttpServletRequest request,MemberVO vo) throws IllegalStateException, IOException{
+		
+		MultipartFile fileUpLoad = vo.getFileUpLoad();
+		if(!fileUpLoad.isEmpty()) {
+			String filename = fileUpLoad.getOriginalFilename();
+			System.out.println("filename="+filename);
+			vo.setProfileimage("image/"+filename);
+			fileUpLoad.transferTo(new File("C:\\Users\\ykouo\\git\\withPP\\Spring_personal_Project\\src\\main\\webapp\\image\\"+filename));
+			memberService.insertMember(vo);
+		}else {
+			memberService.insertNoImageMember(vo);
+		} 
+		
 		return "redirect:login.jsp";
 		/*	System.out.println(memberService.checkMember(vo));
 		if (!memberService.checkMember(vo)) { // false == 아이디가 없다

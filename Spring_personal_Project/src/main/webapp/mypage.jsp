@@ -51,9 +51,21 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
-						<form action="updateMember.do" class="joinTable" method="post" style="text-align: left">
+						<form action="updateMember.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data">
 							<input type="hidden" name="mid" value="${mem.mid}">
 							<table>
+								<tr>
+									<td class="category">미리보기</td>
+								 	<td><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
+   								 	<td><a  href="javascript:void(0);" class="dellink btn">삭제</a></td>
+   								 </tr>
+   								 <tr>	
+   								 	<td class="category">프로필이미지</td>
+									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector"
+										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
+										multiple/>
+									</td>
+								</tr>
 								<tr>
 									<td>ID</td>
 									<td><input type="text" name="mid" value="${mem.mid}" disabled="disabled"></td>
@@ -139,6 +151,8 @@
 	<mytag:js/>
 	<!-- js추가  -->
 	<script src="withPPjs/login.js"></script>
+	<!-- js추가  -->
+	<script src="withPPjs/upload.js"></script>
   </body>
 
 </html>

@@ -23,7 +23,7 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 		vo.setRole(rs.getString("role"));
 		vo.setAccesstoken(rs.getString("accesstoken"));
 		vo.setMdate(rs.getString("mdate"));
-		
+		vo.setProfileimage(rs.getString("profileimage"));
 		System.out.println(vo);
 		return vo;
 		
@@ -33,9 +33,11 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 public class MemberDAO {
 
 	// SQL문
-	private final String insertMemberSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL) VALUES (?,?,?,?,?,?,?)";
+	private final String insertMemberSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,?)";
+	private final String insertMemberSQLNoImage="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,'images/thumnail.png')";
+
 	private final String insertMemberRoleSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,ROLE) VALUES (?,?,?,?,?,?,?,'ADMIN')";
-	private final String updateMemberSQL="UPDATE MEMBER SET MPW=?,NICKNAME=?,PHONE=?,ADDRESS=?,EMAIL=? WHERE MID=?";
+	private final String updateMemberSQL="UPDATE MEMBER SET MPW=?,NICKNAME=?,PHONE=?,ADDRESS=?,EMAIL=?,PROFILEIMAGE=? WHERE MID=?";
 	private final String deleteMemberSQL="DELETE FROM MEMBER WHERE MID=? AND MPW=?";
 	private final String getMemberSQL="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	private final String checkMemberSQL="SELECT * FROM MEMBER WHERE MID=?";
@@ -48,9 +50,14 @@ public class MemberDAO {
 	
 	// C 회원가입 - 홈페이지 가입시 
 	public void insertMember(MemberVO vo) { 
-		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail()};
+		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail(),vo.getProfileimage()};
 		jdbcTemplate.update(insertMemberSQL,args);
-	} 
+	}
+	// C 회원가입 - 홈페이지 가입시 
+	public void insertNoImageMember(MemberVO vo) { 
+		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail()};
+		jdbcTemplate.update(insertMemberSQLNoImage,args);
+	} 	
 	// C 회원가입 - 관리자 
 	public void insertAdmin(MemberVO vo) { 
 		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail()};
@@ -58,7 +65,7 @@ public class MemberDAO {
 	} 
 	// U 회원정보변경
 	public void updateMember(MemberVO vo) {
-		Object[] args = {vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getAddress(),vo.getEmail(),vo.getMid()};
+		Object[] args = {vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getAddress(),vo.getEmail(),vo.getProfileimage(),vo.getMid()};
 		jdbcTemplate.update(updateMemberSQL,args);
 	} 
 	// D 회원탈퇴

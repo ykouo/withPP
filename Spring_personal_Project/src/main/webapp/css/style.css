@@ -1639,3 +1639,18 @@ a:hover{
 .nickname{
 	color: #FEE4A6!important;
 }
+.postTable tr td {
+	padding: 10px;
+	text-align: center;
+
+}
+.textbox{
+	width: 400px;
+}
+.submitBtn{
+	align-content:center;
+	width: 100px;
+}
+.category{
+	width: 150px;
+}

@@ -48,4 +48,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.checkMember(vo);
 	}
 
+	@Override
+	public void insertNoImageMember(MemberVO vo) {
+		memberDAO.insertNoImageMember(vo);
+		
+	}
+
 }

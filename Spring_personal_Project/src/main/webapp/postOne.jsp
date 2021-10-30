@@ -90,101 +90,66 @@
               <p>Categories:${data.location} <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
             </div>
 
-
             <div class="pt-5">
-              <h3 class="mb-5">6 Comments</h3>
-              <ul class="comment-list">
+              <h3 class="mb-5"><%-- ${commCnt} --%>Comments</h3>
+               <ul class="comment-list">
+                <c:forEach var="comm" items="${commData}">
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="images/person_2.jpg" alt="Free Website Template by Free-Template.co">
+                    <img src="${comm.profileimage}" alt="Free Website Template by Free-Template.co">
                   </div>
                   <div class="comment-body">
-                    <h3>Jacob Smith</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <h3>${comm.nickname}</h3>
+                    <div class="meta">${comm.cdate}</div>
+                    <p>${comm.comm}</p>
+                    <p><a href="#" class="reply">like</a></p>
                   </div>
                 </li>
-
-                <li class="comment">
+                </c:forEach>
+                
+                <li>
+                <c:if test="${empty mem}">
+                	<div class="comment-body">
+                    <textarea disabled="disabled" readonly="readonly" style="resize: none; width:300px;">로그인후 이용가능합니다:D</textarea>
+                    <div class="meta"></div>
+                  </div>
+                	
+                </c:if>
+                <c:if test="${!empty mem}">
+                <form action="insertComm.do" method="post">
                   <div class="vcard bio">
-                    <img src="images/person_3.jpg" alt="Free Website Template by Free-Template.co">
+                    <img src="${mem.profileimage}" alt="Free Website Template by Free-Template.co">
                   </div>
                   <div class="comment-body">
-                    <h3>Chris Meyer</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
+                    <h3>${mem.nickname}</h3>
+                    <div class="meta"></div>
+                    <input type="hidden" name="pnum" value="${data.pnum}">
+                    <input type="hidden" name="mid" value="${mem.mid}">
+                    <input type="hidden" name="nickname" value="${mem.nickname}">
+                    <input type="hidden" name="profileimage" value="${mem.profileimage}">
+                    <input type="text" name="comm" style="resize: none;">                
+                    <input type="submit" class="reply" value="등록">
                   </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="images/person_5.jpg" alt="Free Website Template by Free-Template.co">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Chintan Patel</h3>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="images/person_1.jpg" alt="Free Website Template by Free-Template.co">
-                          </div>
-                          <div class="comment-body">
-                            <h3>Jean Doe</h3>
-                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="images/person_4.jpg" alt="Free Website Template by Free-Template.co">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>Ben Afflick</h3>
-                                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                </form>
+                </c:if>
                 </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Free Website Template by Free-Template.co">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li>
-              </ul>
+                
+              </ul> 
               <!-- END comment-list -->
+              
+              
+              
+              
+              
+              
+              
               
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
                 <form action="#" class="">
                   <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
+                    <label for="name">Nickname</label>
+                    <input type="text" class="form-control" id="name" name="nickname">
                   </div>
                   <div class="form-group">
                     <label for="website">Website</label>

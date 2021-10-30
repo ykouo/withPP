@@ -1,6 +1,5 @@
 package controller.action;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.commforcafe.CommForCafeService;
 import model.commforcafe.CommForCafeVO;
+import model.member.MemberVO;
+import model.postforcafe.PostForCafeVO;
 
 @Controller
 public class CommForController {
@@ -17,8 +18,10 @@ public class CommForController {
 	
 	@RequestMapping("/insertComm.do")
 	public String insertComm(CommForCafeVO vo,Model model) {
+		System.out.println("insertComm vo : " + vo );
+		System.out.println("여기왔니 1030");
 		cfcafeService.insertComm(vo);
-		return "showBoardList.do";
+		return "showPost.do";
 	} 
 	@RequestMapping("/clickLike.do")
 	public String updateComm(CommForCafeVO vo,Model model) {
@@ -33,9 +36,8 @@ public class CommForController {
 	}
 	
 	@RequestMapping("/showComm.do")
-	public String getCommList(CommForCafeVO vo,Model model) {
-		List<CommForCafeVO> commData = cfcafeService.getCommList(vo);
-		model.addAttribute("commData",commData);
+	public String getCommList(PostForCafeVO vo,Model model) {
+		
 		return "showBoardList.do";
 	}
 	
