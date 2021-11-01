@@ -1,51 +1,3 @@
-// 로그인 js
-
-//로그인 유효성 검사===========================================================================================================================
-var logBtn = document.querySelector('#logCheck');
-if (logBtn != null)
-   logBtn.onclick = function() {
-      console.log("1");
-      var idCheck = document.getElementById("idCheck");
-      var pwCheck = document.getElementById("pwCheck");
-
-      if (idCheck.value == "") {
-         alert("아이디를 입력하세요.");
-         idCheck.focus();
-         return false;
-      }
-      if (pwCheck.value == "") {
-         alert("비밀번호를 입력하세요.");
-         pwCheck.focus();
-         return false;
-      } else {
-         return true;
-
-      }
-
-   };
-
-
-//카카오 주소 api==========================================================================================================================
-
-window.onload = function() {
-   if (document.getElementById("address_kakao") != null) {
-      document.getElementById("address_kakao").addEventListener("click", function() { //주소입력칸을 클릭하면
-         //카카오 지도 발생
-         new daum.Postcode(
-            {
-               oncomplete: function(data) { //선택시 입력값 세팅
-                  document
-                     .getElementById("address_kakao").value = data.address; // 주소 넣기
-                  document
-                     .querySelector(
-                        "input[name=address_detail]")
-                     .focus(); //상세입력 포커싱
-               }
-            }).open();
-      });
-   }
-}
-
 //우편번호 주소 등록==========================================================================================================================
    function searchPostCode(){new daum.Postcode({
 		oncomplete: function(data){
@@ -68,7 +20,7 @@ window.onload = function() {
 	            extraRoadAddr = ' (' + extraRoadAddr + ')';
 	        }
 	        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	        postcode.value = data.zonecode;
+	      //  postcode.value = data.zonecode;
 	        roadAddress.value = data.roadAddress;
 	       // jibunAddress.value = data.jibunAddress;
 	          
@@ -79,7 +31,7 @@ window.onload = function() {
 		}
 	}).open();}
    
-// 하이픈 자동입력 & 전화번호 입력 유효성검사 
+// 하이픈 자동입력 
    var autoHypenPhone = function(str){
 	      str = str.replace(/[^0-9]/g, '');
 	      var tmp = '';
@@ -116,4 +68,4 @@ window.onload = function() {
 	  console.log(this.value);
 	  this.value = autoHypenPhone( this.value ) ;  
 	}
-   
+  

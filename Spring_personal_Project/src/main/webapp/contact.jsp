@@ -55,30 +55,28 @@
 			</div>
 		</div>
 		
-		
+
 	<div class="site-section">
       <div class="container">     
         <div class="row">
           <div class="col-lg-8 mb-5" >
-            <form action="#" method="post">
+            <h2>Q&A Send</h2>
+            <form action="mail.do" method="post">
+	          <input type="hidden" name="to" value="anykouo@gmail.com"/>
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" name="from" class="form-control" placeholder="답변받을 이메일주소"  onsubmit="emailCheck();">
                 </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="text" name="subject" class="form-control" value="[${mem.mid}]님의 문의메일입니다." readonly="readonly">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                  <textarea name="content"  id="write" class="form-control" placeholder="문의내용을 작성하세요" cols="30" rows="10" maxlength="500"></textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -88,15 +86,16 @@
               </div>
             </form>
           </div>
+      
           <div class="col-lg-4 ml-auto">
             <div class="bg-white p-3 p-md-5">
               <h3 class="text-black mb-4">Contact Info</h3>
               <ul class="list-unstyled footer-link">
                 <li class="d-block mb-3">
                   <span class="d-block text-black">Address:</span>
-                  <span>34 Street Name, City Name Here, United States</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
+                  <span>서울특별시 강남구 테헤란로 146 현익빌딩 3층, 4층 (신한은행건물)</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>010-with-with</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>withPP@withPP.com</span></li>
               </ul>
             </div>
           </div>
@@ -112,6 +111,7 @@
 	<mytag:js/>
     <!-- js추가  -->
     <script src="js/contact.js"></script>
-
+	<script src="withPPjs/resize.js"></script>
+	<script src="withPPjs/emailCheck.js"></script>
   </body>
 </html>

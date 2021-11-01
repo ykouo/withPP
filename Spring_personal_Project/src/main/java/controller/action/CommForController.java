@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.commforcafe.CommForCafeService;
 import model.commforcafe.CommForCafeVO;
-import model.member.MemberVO;
 import model.postforcafe.PostForCafeVO;
 
 @Controller
@@ -18,8 +17,6 @@ public class CommForController {
 	
 	@RequestMapping("/insertComm.do")
 	public String insertComm(CommForCafeVO vo,Model model) {
-		System.out.println("insertComm vo : " + vo );
-		System.out.println("여기왔니 1030");
 		cfcafeService.insertComm(vo);
 		return "showPost.do";
 	} 

@@ -44,7 +44,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean checkMember(MemberVO vo) {
+	public MemberVO checkMember(MemberVO vo) {
+		System.out.println("여기 도착했니?1 그럼 vo : "+ vo);
 		return memberDAO.checkMember(vo);
 	}
 

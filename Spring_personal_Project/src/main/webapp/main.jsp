@@ -41,7 +41,7 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center" style="margin-top: 150px;"> <!-- style="margin-top:90px;" -->
                  <h1 class="text-h1">Welcome to <span class="text-span">withPP</span>  </h1> <!-- <span class="text-primary"> -->
-                  <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-2 rounded-0 btn-color">GO</a></p>
+                  <p class="mb-0"><a href="showPostList.do" class="btn btn-primary px-4 py-2 rounded-0 btn-color">With Cafe GO</a></p>
                 </div>
               </div>
             </div>
@@ -52,8 +52,8 @@
           <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center" style="margin-top: 150px;">
-                  <h1 class="text-h1"></h1>
-                  <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-2 rounded-0 btn-color">GO</a></p>
+                  <h1 class="text-h1">Hava a nice day </h1>
+                  <p class="mb-0"><a href="showPostList.do" class="btn btn-primary px-4 py-2 rounded-0 btn-color">With Cafe GO</a></p>
                 </div>
               </div>
             </div>

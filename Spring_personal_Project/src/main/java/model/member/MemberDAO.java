@@ -88,10 +88,10 @@ public class MemberDAO {
 		}
 	}	 
 	// R - 가입 체크 
-	public boolean checkMember(MemberVO vo) { // R - select one // 로그인기능 
+	public MemberVO checkMember(MemberVO vo) { // R - select one // 로그인기능 
+		System.out.println("여기는 왔니?2 vo : " + vo);
 		Object[] args= {vo.getMid()};
-		boolean res=jdbcTemplate.queryForObject(checkMemberSQL, args, Boolean.class);
-		return res;
+		return	jdbcTemplate.queryForObject(checkMemberSQL, args,new MemberRowMapper()); 
 	}	
 	// R - 회원목록 가져오기 
 	public List<MemberVO> getMemberList(MemberVO vo){ // R - select all 1

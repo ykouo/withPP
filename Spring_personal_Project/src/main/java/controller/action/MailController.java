@@ -1,117 +1,83 @@
 package controller.action;
 
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import model.mail.MailVO;
+import model.member.MemberService;
+import model.member.MemberVO;
+
+@Controller
+
 public class MailController {
-	
-/*	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		ActionForward forward = null;
-		System.out.println("메일 액션 도착" + request.getParameter("uid"));
-		System.out.println("메일 액션 도착" + request.getParameter("mymail"));
 
-		MemDAO mDAO = new MemDAO();
-		MemVO mVO = new MemVO();
-		String mid = request.getParameter("uid");
+	@Autowired
+	private JavaMailSender mailSender;
+	@Autowired
+	private MemberService memberService;
 
-		// public MemVO SelectOne(MemVO vo) {
-		mVO.setMid(mid);
+	@RequestMapping("/mail.do") 
+	@ResponseBody
+	public String sendMail(MailVO vo) { 
+		System.out.println("메일보내기 vo :" + vo);
+		try { 
+			String from = vo.getFrom();
+			String subject = vo.getSubject();
+			String to = vo.getTo();
+			String content = vo.getContent();
 
-		if (mDAO.SelectOne(mVO) == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('존재하지 않는 아이디입니다.');history.go(-1);</script>");
-		} else {
-			MailSend sender = new MailSend();
-			String mcontent = sender.MailSend((String) request.getParameter("mymail"));
-			mVO.setMpw(mcontent);
-			// 업데이트
-			mDAO.UpdatePW(mVO);
-
-			System.out.println(mcontent);
-
-		}
-
-		return forward;
-	}
-	*/
-	
-	
-/*	package controller.action;
-
-	import java.io.IOException;
-	import java.io.PrintWriter;
-	import java.util.Properties;
-
-	import javax.mail.Address;
-	import javax.mail.Authenticator;
-	import javax.mail.Message;
-	import javax.mail.Session;
-	import javax.mail.Transport;
-	import javax.mail.internet.InternetAddress;
-	import javax.mail.internet.MimeMessage;
-	import javax.servlet.ServletException;
-	import javax.servlet.http.HttpServletRequest;
-	import javax.servlet.http.HttpServletResponse;
-
-	import web.mail.MailAuth;
-
-	public class QAMailSendAction implements Action{
-
-		@Override
-		public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
-			ActionForward forward = null;
-			
-			PrintWriter out = response.getWriter();
-
-			String from = request.getParameter("from");
-			String to = request.getParameter("to");
-			String subject = request.getParameter("subject");
-			String content = request.getParameter("content"); // 이메일
-			//String content2 = request.getParameter("content2"); // 문의내용
-
-			Properties prop = System.getProperties();
-			prop.put("mail.smtp.starttls.enable", "true");
-			prop.put("mail.smtp.host", "smtp.gmail.com");
-			prop.put("mail.smtp.auth", "true");
-			prop.put("mail.smtp.port", "587");
-
-			Authenticator auth = new MailAuth();
-
-			Session session = Session.getDefaultInstance(prop, auth);
-
-			MimeMessage msg = new MimeMessage(session);
-
-			try {
-
-				session.setDebug(true);
-
-				msg.setSubject(subject); // 제목
-				Address fromAddr = new InternetAddress(from);
-				msg.setFrom(fromAddr); // 보내는 사람
-
-				Address toAddr = new InternetAddress(to);
-				msg.addRecipient(Message.RecipientType.TO, toAddr); // 받는 사람
-
-				msg.setContent("<h4>답변받을 메일주소 :"+fromAddr+"</h4><hr><h3><b>문의내용</b></h3><br><p>"+content+"</p>", "text/html;charset=UTF-8"); // 내용과 인코딩
-			//<h3>"+fromAddr+"님의 문의내용입니다.</h3><br><hr><h4>문의내용</h4>"+content
-				//msg.setContent(content2, "text/html;charset=UTF-8"); // 내용과 인코딩
-
-				Transport.send(msg); // 전송
-
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.println("<script>alert('[Fail] Sorry T^T');history.back();</script>");
-				// 오류 발생시 뒤로 돌아가도록
-			}
-
-			out.println("<script>alert('[Success]Thanks!');location.href='contact.jsp';</script>");
-			// 성공 시
+			MimeMessage message = mailSender.createMimeMessage(); 
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+			messageHelper.setTo(to); 
+			String htmlStr = "<h4>답변받을 메일주소 :"+from+"</h4><hr><h3><b>문의내용</b></h3><br><p>"+content+"</p>";
+			messageHelper.setText(htmlStr,true); // html 코드를 읽을수 있도록하는 설정 
+			messageHelper.setFrom(from); 
+			messageHelper.setSubject(subject); 
 		
-			return forward;
+			mailSender.send(message); 
+		}catch(Exception e){ 
+			System.out.println(e); 
+		} 
+		System.out.println("문의메일보내기 성공!");
+		return "<script>alert('MailSuccess:D');location.href='contact.jsp';</script>"; 
+	}
+	
+	@RequestMapping("/tempPw.do") 
+	@ResponseBody
+	public String sendTempPw(MailVO vo, MemberVO mvo) { 
+		System.out.println("임시비밀번호보내기 vo :" + vo);
+		System.out.println(mvo);
+		try { 		
+			if(memberService.checkMember(mvo)==null) {
+				System.out.println("메일발송실패");		
+			}else{			
+			String from = "anykouo@gmail.com";
+			String subject = "["+mvo.getMid()+"]님의 임시비밀번호";
+			String to = vo.getTo();
+			String content = RandomStringUtils.randomAlphanumeric(10);
+
+			MimeMessage message = mailSender.createMimeMessage(); 
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+			messageHelper.setTo(to); 
+			String htmlStr = "<hr><h3><b>임시비밀번호 : </b></h3><br><p>"+content+"</p>";
+			messageHelper.setText(htmlStr,true); // html 코드를 읽을수 있도록하는 설정 
+			messageHelper.setFrom(from); 
+			messageHelper.setSubject(subject); 
+			mailSender.send(message);
+			System.out.println("메일발송 완료");		
+			//res = "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+			}
+		}catch(Exception e){ 
+			System.out.println(e); 
+			return "<script>alert('WithPP hava no Id T^T You search first ID');history.go(-1);</script>";
 		}
-
-	}*/
-
+		return "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+	}	
 }

@@ -11,6 +11,6 @@ public interface MemberService {
 	void deleteMember(MemberVO vo);
 	MemberVO getMember(MemberVO vo);
 	List<MemberVO> getMemberList(MemberVO vo);
-	boolean checkMember(MemberVO vo);
+	MemberVO checkMember(MemberVO vo);
 }
  
