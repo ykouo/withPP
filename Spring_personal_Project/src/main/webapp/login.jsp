@@ -7,8 +7,7 @@
 
 <head>
 <title>withPP - LOGIN</title>
-<script type="text/javascript"
-	src="developers.kakao.com/sdk/js/kakao/min/js" charset="utf-8" />
+<script src="developers.kakao.com/sdk/js/kakao/min/js" charset="utf-8" />
 <script type="text/javascript">
    ${document}.ready(function(){
 	   kakao.init('자바스크립트 앱키 입력');
@@ -52,7 +51,8 @@
 		<mytag:header />
 
 		<div class="ftco-blocks-cover-1">
-			<div class="ftco-cover-1 " style="background-color: #FEE4A6">
+			<div class="ftco-cover-1 "
+				style="background-image: url('images/dog4.png'); >
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
 						<div class="col-lg-6 text-center"></div>
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 
-		<script type="text/javascript">
+<script type="text/javascript">
 Kakao.init('카카오 developer javascript api key'); // javascript api키를 입력
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
 //카카오로그인
@@ -104,41 +104,44 @@ function kakaoLogout() {
 		<div class="site-section">
 			<div class="container">
 				<div class="row" style="justify-content: center;">
-					<!--  style="justify-content: center" : 가운데정렬  -->
-					<div class="col-lg-8 mb-5">
-						<form action="login.do" method="post">
-							<input type="hidden" name="nickname"> <input
-								type="hidden" name="phone"> <input type="hidden"
-								name="address"> <input type="hidden" name="birth">
-							<input type="hidden" name="email"> <input type="hidden"
-								name="role"> <input type="hidden" name="mdate">
-							<input type="hidden" name="accesstoken">
-							<div class="form-group row" style="justify-content: center;">
-								<div class="col-md-6 mb-4 mb-lg-0">
-									<input type="text" id="idCheck" class="form-control"
-										placeholder="ID" name="mid" required="required"> <br>
-									<input type="password" id="pwCheck" class="form-control"
-										placeholder="Password" name="mpw" required="required">
-									<br> <input type="submit"
-										class="btn btn-block btn-primary text-white py-3 px-5 log logCheck"
-										value="LOGIN"> <br>
-									<p style="text-align: center;">
-										<a href="javascript:kakaoLogin();"><img
-											src="images/kakao_login_medium_narrow.png"></a>
-									</p>
-									<p style="text-align: center;">
-										<b><a href="signUp.jsp">회원가입</a> / <a href="searchIdPw.jsp">ID/PW 찾기</a></b>
-									</p>
+					<!--  style="
+				justify-content: center" :가운데정렬  -->
+				<div class="col-lg-8 mb-5">
+					<form action="login.do" method="post">
+						<input type="hidden" name="nickname"> <input type="hidden"
+							name="phone"> <input type="hidden" name="address">
+						<input type="hidden" name="birth"> <input type="hidden"
+							name="email"> <input type="hidden" name="role"> <input
+							type="hidden" name="mdate"> <input type="hidden"
+							name="accesstoken">
+						<div class="form-group row" style="justify-content: center;">
+							<div class="col-md-6 mb-4 mb-lg-0">
+								<input type="text" id="idCheck" class="form-control"
+									placeholder="ID" name="mid" required="required"> <br>
+								<input type="password" id="pwCheck" class="form-control"
+									placeholder="Password" name="mpw" required="required">
+								<!-- pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" 나중에 추가 -->
+								<br> <input type="submit"
+									class="btn btn-block btn-primary text-white py-3 px-5 log logCheck"
+									value="LOGIN"> <br>
+								<p style="text-align: center;">
+									<a href="javascript:kakaoLogin();"><img
+										src="images/kakao_login_medium_narrow.png"></a>
+								</p>
+								<p style="text-align: center;">
+									<b><a href="signUp.jsp">회원가입</a> / <a href="searchIdPw.jsp">ID/PW
+											찾기</a></b>
+								</p>
 
 
 
-								</div>
 							</div>
-						</form>
+						</div>
+					</form>
 
-					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 

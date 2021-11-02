@@ -42,8 +42,10 @@ public class MemberDAO {
 	private final String getMemberSQL="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	private final String checkMemberSQL="SELECT * FROM MEMBER WHERE MID=?";
 	private final String getMemberListSQL="SELECT * FROM MEMBER ORDER BY MDATE DESC";
+	private final String searchMemberSQL="SELECT * FROM MEMBER WHERE EMAIL=?";
+	private final String checkIdSQL="SELECT COUNT(MID) FROM MEMBER WHERE MID=?";
 	
-
+	
 	// JDBCTemplete
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -83,19 +85,35 @@ public class MemberDAO {
 			Object[] args= {vo.getMid(),vo.getMpw()};
 			return jdbcTemplate.queryForObject(getMemberSQL, args,new MemberRowMapper());
 		}catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}	 
-	// R - 가입 체크 
-	public MemberVO checkMember(MemberVO vo) { // R - select one // 로그인기능 
-		System.out.println("여기는 왔니?2 vo : " + vo);
+	// R - 아이디 체크 
+	public MemberVO checkMember(MemberVO vo) { 
+		try{
 		Object[] args= {vo.getMid()};
-		return	jdbcTemplate.queryForObject(checkMemberSQL, args,new MemberRowMapper()); 
+			return	jdbcTemplate.queryForObject(checkMemberSQL, args,new MemberRowMapper()); 
+		}catch(Exception e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	// R - 메일로 아이디체크 
+	public MemberVO searchMember(MemberVO vo) { // R - select one // 로그인기능 
+		System.out.println("여기는 왔니?2 vo : " + vo);
+		try{
+		Object[] args= {vo.getEmail()};
+		return	jdbcTemplate.queryForObject(searchMemberSQL, args,new MemberRowMapper()); 
+		}catch(Exception e) {
+			//e.printStackTrace();
+			return null;
+		}
 	}	
 	// R - 회원목록 가져오기 
 	public List<MemberVO> getMemberList(MemberVO vo){ // R - select all 1
 		return jdbcTemplate.query(getMemberListSQL, new MemberRowMapper());
 	} 
+
 	
 }

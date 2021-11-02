@@ -1,6 +1,7 @@
 <!--  회원가입 페이지  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
 <!doctype html>
 <html lang="en">
@@ -36,8 +37,8 @@
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
-                  <h1><span class="text-primary">Contact</span> </h1>
-                  <p>Welcome 000 page</p>
+                  <h1><span class="text-primary">Mypage</span> </h1>
+                  <p>회원정보 변경</p>
                   
                 </div>
               </div>
@@ -52,11 +53,12 @@
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
 						<form action="updateMember.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data">
-							<input type="hidden" name="mid" value="${mem.mid}">
+							<input type="hidden" name="profileimage" value="${mem.profileimage}">
+							<%-- <input type="hidden" name="mid" value="${mem.mid}"> --%>
 							<table>
 								<tr>
 									<td class="category">미리보기</td>
-								 	<td><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
+								 	<td><img src="images/thumnail.png" alt="프로필이미지" class="thumb" style="width:150px;height:150px;"/></td>	
    								 	<td><a  href="javascript:void(0);" class="dellink btn">삭제</a></td>
    								 </tr>
    								 <tr>	
@@ -68,15 +70,20 @@
 								</tr>
 								<tr>
 									<td>ID</td>
-									<td><input type="text" name="mid" value="${mem.mid}" disabled="disabled"></td>
+									<td colspan="2">
+										<input type="text" name="mid" id="mid" value="${mem.mid}" readonly="readonly" >
+									</td>
+									
 								</tr>
 								<tr>
 									<td>PASSWORD</td>
-									<td><input type="password" name="mpw" value="${mem.mpw}" required="required"></td>
+									<td colspan="2"><input type="password" name="mpw" id="password" value="${mem.mpw}"  required="required" placeholder="영문,특수문자(@!%*#?&),숫자를 포함한 8~16자리" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
+									</td>
 								</tr>
 								<tr>
 									<td>PASSWORD CHECK</td>
-									<td><input type="password" value="${mem.mpw}" required="required"></td>
+									<td colspan="2"><input type="password" id="passwordConfirm" onkeyup="javascript:passConfirm()" placeholder="비밀번호 확인" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"><span id="confirmMsg"></span></td>
+									
 								</tr>
 								<tr>
 									<td>NICKNAME</td>
@@ -84,27 +91,29 @@
 								</tr>
 								<tr>
 									<td>PHONE</td>
-									<td><input type="tel" name="phone" value="${mem.phone}" required="required"></td>
+									<td colspan="4"><input type="tel" onkeyup="" id="phoneNum"class="textbox" name="phone" value="${mem.phone}" required="required" maxlength="13" style="width:100%; resize:none;"></td>
 								</tr>
 								<tr>
 									<td>BIRTH</td>
-									<td><input type="date" name="birth" value="${mem.birth}" disabled="disabled" required="required"></td>
+									<td colspan="4"><input type="date" name="birth" value="${mem.birth}"  required="required"></td>
 								</tr>
-								<tr>
-									<td>변경전 ADDRESS</td>
-									<td colspan="4"><input type="text" name="address" id="address_kakao"value="${mem.address}" required="required"></td>
-								</tr> 
 								<tr>
 									<td>ADDRESS</td>
-									<td><input id="postcode" type="text" name="address" placeholder="우편번호"></td>
-									<td><input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>	
-									<td><input type="text" id="roadAddress" name="address" readonly placeholder="주소" /><br></td>
-									<td><input type="text" id="detailAddress" name="address" placeholder="상세 주소" /><br></td>	
+									<td><input id="postcode" type="text" name="address" style="width:100px;" placeholder="우편번호">    
+									<input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>
+								<tr>
+									<td colspan="2"><input type="text" id="roadAddress" name="address" value="${mem.address}" style="width:320px;" placeholder="주소" /><br></td>
 								</tr>
-
+								<tr>
+									<td colspan="2"><input type="text" id="detailAddress" name="address" style="width:320px;"  placeholder="상세 주소" /><br></td>	
+															
+								</tr>
 								<tr>
 									<td>EMAIL</td>
-									<td><input type="email" name="email" value="${mem.email}" required="required"></td>
+									<td><input type="email" name="email" id="email" value="${mem.email}"  required="required"><input type="button"  onclick= "checkEmail()" value="이메일확인">
+										<span class="email_ok">사용 가능한 이메일입니다.</span>
+										<span class="email_already">이미 등록된 이메일입니다.</span>
+									</td>
 								</tr>
 								<tr>
 									<td>ROLE</td>
@@ -112,10 +121,11 @@
 										<input type="radio" name="role" value="USER" checked="checked">회원
 									</td>
 								</tr>
-								<tr align="center">
+								<tr >
 									<td colspan="2"><input type="submit" value="회원정보변경"></td>
 								</tr>
 							</table>
+					
 						</form>
 						</div>
 						<div class="site-section">
@@ -148,11 +158,11 @@
     </div>
     
 	<!-- js리스트 태그 -->
+	<script src="withPPjs/upload.js"></script>
 	<mytag:js/>
 	<!-- js추가  -->
-	<script src="withPPjs/login.js"></script>
-	<!-- js추가  -->
-	<script src="withPPjs/upload.js"></script>
+	<script src="withPPjs/mypage.js"></script>
+
   </body>
 
 </html>

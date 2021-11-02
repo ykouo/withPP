@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // 파일 선택 필드에 이벤트 리스너 등록
     document.getElementById('imageSelector').addEventListener('change', function(e){
-        let elem = e.target
+        let elem = e.target;
         if(validateType(elem.files[0])){
             let preview = document.querySelector('.thumb');
             preview.src = URL.createObjectURL(elem.files[0]); //파일 객체에서 이미지 데이터 가져옴.

@@ -51,34 +51,34 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
-						<form action="insertPost.do" class="postTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
+						<form action="insertPost.do" id="postWrite" class="postTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
 							<input type="hidden" name="mid" value="${mem.mid}">
 							<input type="hidden" name="nickname" value="${mem.nickname}">
 							<table> 
 								<tr>
 									<td class="category">미리보기</td>
 								 	<td><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
-   								 	<td><a href="javascript:void(0);" class="dellink btn">삭제</a></td>
+   								 	<td><a href="javascript:void(0);" class="dellink">삭제</a></td>
    								 </tr>
    								 <tr>	
    								 	<td class="category">썸네일</td>
 									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector"
 										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
-										multiple  style="width:100%; resize:none;"/>
+										multiple  style="width:100%; resize:none;" />
 									</td>
 								</tr>
 								<tr>
 									<td class="category">제목</td>
-									<td colspan="2"><input type="text" class="textbox" name="title" required="required"  style="width:100%; resize:none;" maxlength="30"></td>
+									<td colspan="2"><input type="text" class="textbox" name="title" value="${data.title}" required="required"  style="width:100%; resize:none;"></td>
 								</tr>
 								<tr>
 									<td class="category">내용</td>
-									<td colspan="2"><textarea name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"  style="width:100%; resize:none;" maxlength="500"></textarea></td>
+									<td colspan="2"><textarea name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"  style="width:100%; resize:none;">${data.content}</textarea></td>
 								</tr>
 								<tr>
 									<td class="category">지역</td>
 									<td colspan="2">
-										<select class="textbox" name="location" required="required"  style="width:100%; resize:none;"  style="width:100%; resize:none;">
+										<select class="textbox" id="location"  onchange="javascript:selectLocation();"name="location" required="required" style="width:100%; resize:none;" style="width:100%; resize:none;">
 											<option value="서울">서울</option>
 											<option value="경기도">경기도</option>
 											<option value="인천">인천</option>
@@ -94,6 +94,7 @@
 											<option value="경남">경남</option>
 											<option value="경북">경북</option>
 											<option value="제주">제주</option>
+										
 										</select>
 									</td>
 								</tr>
@@ -109,11 +110,11 @@
 								<tr>
 								<tr>
 									<td>상세주소</td>
-									<td colspan="3"><input type="text" id="detailAddress" name="locaddress" placeholder="상세 주소"  style="width:100%; resize:none;" maxlength="100"/></td>
+									<td colspan="3"><input type="text" id="detailAddress" name="locaddress" placeholder="상세 주소" value="${data.locaddress}" style="width:100%; resize:none;" /></td>
 								</tr>
 								<tr>
 									<td class="category">전화번호</td>
-									<td colspan="2"><input type="tel" id="phoneNum" class="textbox"name="loccall" required="required" maxlength="13" style="width:100%; resize:none;"></td>
+									<td colspan="2"><input type="tel" id="phoneNum" class="textbox" name="loccall" value="${data.loccall}" required="required" maxlength="13" style="width:100%; resize:none;"></td>
 								</tr>		
 								<tr>
 									<td colspan="3" align="center"><input type="submit" class="submitBtn" value="글작성"></td>
@@ -134,10 +135,11 @@
 	<mytag:footer />
 
 	<!-- js리스트 태그 -->
+	<script src="withPPjs/upload.js"></script>
 	<mytag:js />
 	<!-- js추가  -->
-	<script src="withPPjs/upload.js"></script>
 	<script src="withPPjs/post.js"></script>
+	<script src="withPPjs/beforeunload.js"></script>
 </body>
 </html>
 

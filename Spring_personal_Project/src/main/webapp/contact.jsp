@@ -33,13 +33,10 @@
     
     
     <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url('images/hero_1.jpg');">
+        <div class="ftco-cover-1" style="background-image: url('images/dog5.jpg');">
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
-                  <h1>Contact <span class="text-primary">Ideal.</span> Now!  </h1>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                  
                 </div>
               </div>
             </div>
@@ -49,7 +46,10 @@
 		<!-- 구글 맵 추가 -->
 		<div class="site-section">
 			<div class="container" style="margin-top: -50px; margin-bottom: -150px;">
+				<h1>Contact <span class="text-primary">withPP</span> Now!</h1>
+					
 				<div class="row" style="justify-content: center;">
+				
 					<div id="map" style="width:100%; height:300px;"></div>
 				</div>
 			</div>
@@ -68,15 +68,24 @@
                   <input type="text" name="from" class="form-control" placeholder="답변받을 이메일주소"  onsubmit="emailCheck();">
                 </div>
               </div>
+              <c:if test="${empty mem}">
+               <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="text" name="subject" class="form-control" value="[Guest]님의 문의메일입니다." readonly="readonly">
+                </div>
+              </div>
+              </c:if>
+              <c:if test="${! empty mem}">
               <div class="form-group row">
                 <div class="col-md-12">
                   <input type="text" name="subject" class="form-control" value="[${mem.mid}]님의 문의메일입니다." readonly="readonly">
                 </div>
               </div>
+              </c:if>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="content"  id="write" class="form-control" placeholder="문의내용을 작성하세요" cols="30" rows="10" maxlength="500"></textarea>
+                  <textarea name="content"  id="write" class="form-control" placeholder="문의내용을 작성하세요" cols="30" rows="10" maxlength="500" style="resize: none;"></textarea>
                 </div>
               </div>
               <div class="form-group row">

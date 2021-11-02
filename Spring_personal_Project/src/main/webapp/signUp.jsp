@@ -6,7 +6,7 @@
 <html lang="en">
 
   <head>
-    <title>SignIn - withPP </title>
+    <title>SignUp- withPP </title>
     <!--  파비콘 추가  -->
     <mytag:Fabicon/>
     <meta charset="utf-8">
@@ -15,6 +15,8 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!-- styleLink모음 태그 -->
 	<mytag:styleLink/>    
+  	<!-- ajax 사용을 위한  jquery추가  -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head> 
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"> 
@@ -67,16 +69,22 @@
 								</tr>
 								<tr>
 									<td>ID</td>
-									<td colspan="4"><input type="text" name="mid" required="required"></td>
+									<td colspan="2">
+										<input type="text" name="mid" id="mid" required="required" ><input type="button"  onclick= "checkId()" value="중복">
+										<span class="id_ok">사용 가능한 아이디입니다.</span>
+										<span class="id_already">사용중인 아이디입니다.</span>
+									</td>
+									
 								</tr>
 								<tr>
 									<td>PASSWORD</td>
-									<td colspan="4"><input type="password" name="mpw" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
+									<td colspan="2"><input type="password" name="mpw" id="password" required="required" placeholder="영문,특수문자(@!%*#?&),숫자를 포함한 8~16자리" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
 									</td>
 								</tr>
 								<tr>
 									<td>PASSWORD CHECK</td>
-									<td colspan="4"><input type="password"  required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"></td>
+									<td colspan="2"><input type="password" id="passwordConfirm" onkeyup="javascript:passConfirm()" placeholder="비밀번호 확인" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"><span id="confirmMsg"></span></td>
+									
 								</tr>
 								<tr>
 									<td>NICKNAME</td>
@@ -102,7 +110,10 @@
 								</tr>
 								<tr>
 									<td>EMAIL</td>
-									<td><input type="email" name="email" required="required"></td>
+									<td><input type="email" name="email" id="email" required="required"><input type="button"  onclick= "checkEmail()" value="이메일확인">
+										<span class="email_ok">사용 가능한 이메일입니다.</span>
+										<span class="email_already">이미 등록된 이메일입니다.</span>
+									</td>
 								</tr>
 								<tr>
 									<td>ROLE</td>
@@ -121,21 +132,14 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-
-
 		</div>
-
-
     <!-- footer 태그  -->
 	<mytag:footer/>
-    </div>
-    
+    </div>  
 	<!-- js리스트 태그 -->
 	<mytag:js/>
-	<script src="withPPjs/login.js"></script>
-
+	<script src="withPPjs/signUp.js"></script>
   </body>
 
 </html>

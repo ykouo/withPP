@@ -102,7 +102,10 @@
                     <h3>${comm.nickname}</h3>
                     <div class="meta">${comm.cdate}</div>
                     <p>${comm.comm}</p>
-                    <p><a href="#" class="reply">like</a></p>
+                    <c:if test="${mem.mid eq comm.mid}">
+                    	<p><a href="deleteComm.do?cnum=${comm.cnum}&pnum=${data.pnum}" class="reply">댓글삭제</a></p>
+                    </c:if>
+                    <p><a href="clickLike.do?cnum=${comm.cnum}&pnum=${data.pnum}" >👍🏻</a> : ${comm.likecnt}</p>
                   </div>
                 </li>
                 </c:forEach>

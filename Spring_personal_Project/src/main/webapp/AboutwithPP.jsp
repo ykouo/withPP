@@ -18,11 +18,8 @@
 	<mytag:styleLink/>  
   </head>
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-    
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">   
     <div class="site-wrap" id="home-section">
-
       <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
           <div class="site-mobile-menu-close mt-3">
@@ -35,12 +32,11 @@
 	<mytag:header/>
 
     <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url('images/hero_1.jpg');">
+        <div class="ftco-cover-1" style="background-image: url('images/dog2.jpg');">
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
-                  <h1>About <span class="text-primary">withPP?</span>  </h1>
-                  <p>with 함께 Pet 반려동물 People </p> 
+                  
                 </div>
               </div>
             </div>
@@ -52,16 +48,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
+            <h1>About <span class="text-primary">withPP?</span>  </h1>
+            <p>with[함께] Pet[반려동물] People[사람] </p> 
             <h2 class="heading-39291">우리는 언제나 함께하는 생활을 꿈꿉니다.</h2>
-            <p class="mb-5">withPP 는 언제나 함께하고 싶은 반려동물 가정을 응원합니다:D <br> 함께하고 싶지만 함께하기 어려운 현실. 작은 도움이라도 되고자 합니다</p>
-            <p><a href="#" class="more-39291">More About Us</a></p>
+            <p class="mb-5">withPP 는 언제나 함께하고 싶은 반려동물 가정을 응원합니다:D <br> 함께하고 싶지만 함께하기 어려운 현실.<br> 작은 도움이 되고자 합니다</p>           
           </div>
 
           <div class="col-md-4 ml-auto">
             <div class="year-experience-99301">
               <h2 class="heading-39291">Create withPP</h2>
               <span class="text">Since <span>2021/10/24 ~</span></span>
-              <span class="number"><span>75</span></span>
+              <span class="number"><span id="startDate"></span></span>
             </div>
           </div>
         </div>
@@ -75,6 +72,7 @@
           <div class="col-md-6">
             <h2 class="heading-39291">Meet Our Team</h2>
             <p>withPP의 팀원을 소개합니다:D</p>
+            <p>팀원을 click 하면 블로그로 이동합니다\^o^/</p>
           </div>
         </div>
         <div class="row align-items-stretch" style="justify-content: center">
@@ -159,20 +157,10 @@
     </footer>
 
     </div>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/jquery.fancybox.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/aos.js"></script>
-
-    <script src="js/main.js"></script>
-
+	<!-- mytag:js로 교체 -->
+	<mytag:js/>
+	<!-- js 추가 -->
+	<script src="withPPjs/aboutWithPP.js"></script>
   </body>
 
 </html>

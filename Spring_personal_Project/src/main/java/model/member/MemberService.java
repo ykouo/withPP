@@ -10,6 +10,7 @@ public interface MemberService {
 	void updateMember(MemberVO vo);
 	void deleteMember(MemberVO vo);
 	MemberVO getMember(MemberVO vo);
+	MemberVO searchMember(MemberVO vo); 
 	List<MemberVO> getMemberList(MemberVO vo);
 	MemberVO checkMember(MemberVO vo);
 }

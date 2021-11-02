@@ -21,15 +21,16 @@ public class CommForController {
 		return "showPost.do";
 	} 
 	@RequestMapping("/clickLike.do")
-	public String updateComm(CommForCafeVO vo,Model model) {
+	public String updateComm(CommForCafeVO vo,PostForCafeVO pvo, Model model) {
 		cfcafeService.updateComm(vo);
 		model.addAttribute("vo",vo);
-		return "showBoardList.do";
+		return "showPost.do?pnum="+pvo.getPnum();
 	}
 	@RequestMapping("/deleteComm.do")
-	public String deleteComm(CommForCafeVO vo,Model model) {
+	public String deleteComm(CommForCafeVO vo,PostForCafeVO pvo) {
+		System.out.println(pvo);
 		cfcafeService.deleteComm(vo);
-		return "showBoardList.do";
+		return "showPost.do?pnum="+pvo.getPnum();
 	}
 	
 	@RequestMapping("/showComm.do")

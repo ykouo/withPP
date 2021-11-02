@@ -36,11 +36,11 @@
 	<mytag:header/>
     
     <div class="ftco-blocks-cover-1">
-        <div class="ftco-cover-1" style="background-image: url('images/hero_1.jpg');">
+        <div class="ftco-cover-1" style="background-image: url('images/dog3.jpg');">
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
-                  <h1>게시글 목록</h1>
+                  <!-- <h1 style="color:gold;">For Pet</h1> -->
                   <c:if test="${! empty mem}">
                   	<button type="button" onclick="location.href='postInsert.jsp;'">글작성</button>
                   </c:if>

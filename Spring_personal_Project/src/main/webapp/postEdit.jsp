@@ -73,7 +73,7 @@ function selectLocation(){
    								 <tr>	
    								 	<td class="category">썸네일</td>
 									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector"
-										name="fileUpLoad"  accept="image/jpeg, image/jpg, image/png"
+										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
 										multiple  style="width:100%; resize:none;" />
 									</td>
 								</tr>
@@ -153,6 +153,7 @@ function selectLocation(){
 <!-- footer 태그  -->
 	<mytag:footer />
 	</div>
+	<script src="withPPjs/upload.js"></script>
 	<!-- js리스트 태그 -->
 	<mytag:js />
 	<!-- js추가  -->

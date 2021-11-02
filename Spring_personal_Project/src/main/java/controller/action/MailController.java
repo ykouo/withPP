@@ -79,5 +79,40 @@ public class MailController {
 			return "<script>alert('WithPP hava no Id T^T You search first ID');history.go(-1);</script>";
 		}
 		return "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+	}
+	@RequestMapping("/searchID.do") 
+	@ResponseBody
+	public String sendID(MailVO vo, MemberVO mvo) { 
+		System.out.println("아이디찾기vo :" + vo);
+		System.out.println(mvo);
+		try { 		
+			if(memberService.searchMember(mvo)==null) {
+				System.out.println("메일발송실패");		
+			}else{			
+			mvo = memberService.searchMember(mvo);
+			System.out.println("아이디확인 : " + mvo.getMid());
+			String from = "anykouo@gmail.com";
+			String subject = "아이디 찾기 결과입니다";
+			String to = mvo.getEmail();
+			String content = "가입하셨던 아이디는["+mvo.getMid()+"] 입니다.";
+
+			MimeMessage message = mailSender.createMimeMessage(); 
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
+			messageHelper.setTo(to); 
+			String htmlStr = "<hr><h3><b>"+content+"</b></h3>";
+			messageHelper.setText(htmlStr,true); // html 코드를 읽을수 있도록하는 설정 
+			messageHelper.setFrom(from); 
+			messageHelper.setSubject(subject); 
+			mailSender.send(message);
+			System.out.println("메일발송 완료");		
+			//res = "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+			}
+		}catch(Exception e){ 
+			System.out.println(e); 
+			return "<script>alert('There is no registration history.');history.go(-1);</script>";
+		}
+		return "<script>alert('MailSuccess:D');location.href='searchIdPw.jsp';</script>";
 	}	
+	
+	
 }

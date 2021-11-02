@@ -449,7 +449,7 @@ h1, h2, h3, h4, h5,
     padding: 0;
     font-size: 1.7rem; }
     .site-navbar .site-logo a {
-      color: #F7F4E3;
+      color: #FEE4A6;
       text-transform: lowercase; }
     @media (max-width: 991.98px) {
       .site-navbar .site-logo {
@@ -472,7 +472,7 @@ h1, h2, h3, h4, h5,
         margin-left: 15px;
         margin-right: 15px;
         padding: 20px 0px;
-        color: #F7F4E3!important;
+        color: #FEE4A6!important;
         display: inline-block;
         text-decoration: none !important; }
         .site-navbar .site-navigation .site-menu > li > a:hover {
@@ -1661,3 +1661,26 @@ a:hover{
 	width: 100%; 
 	height: 100px;
 }
+/* ajax스타일 추가 */
+.id_ok {
+	color: blue;
+	display: none;
+}
+
+.id_already {
+	color: red;
+	display: none;
+}
+.email_ok {
+	color: blue;
+	display: none;
+}
+
+.email_already {
+	color: red;
+	display: none;
+}
+
+
+
+

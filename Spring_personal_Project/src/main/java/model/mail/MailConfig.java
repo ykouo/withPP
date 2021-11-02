@@ -12,8 +12,8 @@ public class MailConfig {
 	public static JavaMailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("host");
-		mailSender.setUsername("备臂皋老林家");
-		mailSender.setPassword("备臂皋老api");
+		mailSender.setUsername("anykouo@gmail.com");
+		mailSender.setPassword("备臂皋老API");
 		return mailSender;
 	}
 

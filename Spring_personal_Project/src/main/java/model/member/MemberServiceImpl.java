@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO checkMember(MemberVO vo) {
-		System.out.println("여기 도착했니?1 그럼 vo : "+ vo);
+		
 		return memberDAO.checkMember(vo);
 	}
 
@@ -53,6 +53,11 @@ public class MemberServiceImpl implements MemberService{
 	public void insertNoImageMember(MemberVO vo) {
 		memberDAO.insertNoImageMember(vo);
 		
+	}
+
+	@Override
+	public MemberVO searchMember(MemberVO vo) {	
+		return memberDAO.searchMember(vo);
 	}
 
 }

@@ -28,7 +28,7 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                   <li class="active"><a href="index.jsp" class="nav-link">Home</a></li>
                   <li><a href="AboutwithPP.jsp" class="nav-link">About</a></li>
-                  <li><a href="services.html" class="nav-link">Services</a></li>
+                  <li><a href="contact.jsp" class="nav-link">Contact</a></li>
                 </ul>
               </nav>
             </div>
@@ -45,9 +45,10 @@
             <div class="col-lg-4">
               <nav class="site-navigation text-left mr-auto " role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="about.html" class="nav-link">what</a></li>
-                  <li><a href="showPostList.do" class="nav-link">Blog</a></li>
-                  <li><a href="contact.jsp" class="nav-link">Contact</a></li>
+                  
+                  <li><a href="showPostList.do" class="nav-link">ForCafe</a></li>
+                  <li><a href="#" class="nav-link">ForFood</a></li>
+                  <li><a href="#" class="nav-link">Services</a></li>
                 </ul>
               </nav>
             </div>

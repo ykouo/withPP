@@ -3,7 +3,6 @@ package controller.action;
 import java.io.File;
 import java.io.IOException;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,10 +26,9 @@ public class MemberController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@ResponseBody
 	public String login(HttpServletRequest request, MemberVO vo) throws IOException {
 		
-		String loginCnt=request.getParameter("loginCnt");
-		int loginFail = 0;
 		if (vo.getMid() == null || vo.getMid().equals("")) {
 			throw new IllegalArgumentException("아이디 미입력 ㅠ");
 		}
@@ -37,11 +36,9 @@ public class MemberController {
 		if (mem != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem", mem);
-			return "redirect:main.do";
+			return "<script>location.href='main.do';</script>";
 		} else {
-			// 에러 페이지에서 해당 문구를 보여준다.
-			throw new EmptyResultDataAccessException("[로그인 Fail] 아이디와 비밀번호를 다시 확인해주세요", 1);
-			// return "redirect:login.jsp";
+			 return "<script>alert('Login Fail T^T');history.go(-1);</script>";
 		}
 	}
 
@@ -68,12 +65,7 @@ public class MemberController {
 		}
 
 		return "<script>alert('SignUp Complete:D');location.href='login.jsp';</script>";
-		/*
-		 * System.out.println(memberService.checkMember(vo)); if
-		 * (!memberService.checkMember(vo)) { // false == 아이디가 없다
-		 * memberService.insertMember(vo); return "redirect:login.jsp"; } else { return
-		 * "redirect:signIn.jsp"; }
-		 */
+		
 	}
 
 	@RequestMapping("/goMypage.do")
@@ -85,7 +77,18 @@ public class MemberController {
 	}
 
 	@RequestMapping("/updateMember.do")
-	public String updateMember(MemberVO vo, Model model) {
+	public String updateMember(MemberVO vo, Model model) throws IllegalStateException, IOException {
+		MultipartFile fileUpLoad = vo.getFileUpLoad();
+		if (!fileUpLoad.isEmpty()) {
+			String filename = fileUpLoad.getOriginalFilename();
+			System.out.println("filename=" + filename);
+			vo.setProfileimage("image/" + filename);
+			fileUpLoad.transferTo(new File("C:\\Users\\ykouo\\git\\withPP\\Spring_personal_Project\\src\\main\\webapp\\image\\" + filename));
+			memberService.updateMember(vo);
+		} else {
+			vo.setProfileimage("image/thumnail.png");
+			memberService.updateMember(vo);
+		}
 		System.out.println("업데이트 회원정보; " + vo);
 		memberService.updateMember(vo);
 		return "logout.do";
@@ -97,7 +100,32 @@ public class MemberController {
 		memberService.deleteMember(vo);
 		return "logout.do";
 	}
-
+	//아이디 중복체크 
+	@RequestMapping("/idCheck.do")
+	@ResponseBody
+	public String idCheck(MemberVO vo, Model model) {
+		 MemberVO mem = memberService.checkMember(vo);
+		 String check ="";
+		 if(mem != null) {
+			 check="no";
+		 }else if(mem == null) {
+			 check="ok";
+		 }
+		 return check;
+	}
+	// 이메일 중복체크 
+		@RequestMapping("/emailCheck.do")
+		@ResponseBody
+		public String emailCheck(MemberVO vo, Model model) {
+			 MemberVO mem = memberService.searchMember(vo);
+			 String check ="";
+			 if(mem != null) {
+				 check="no";
+			 }else if(mem == null) {
+				 check="ok";
+			 }
+			 return check;
+		}
 	/*@RequestMapping(value = "/login_kakao.do", method = RequestMethod.GET)
 	public String loginKakao(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model)
 			throws Exception {
