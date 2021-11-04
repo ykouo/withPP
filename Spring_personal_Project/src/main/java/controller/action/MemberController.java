@@ -7,12 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,11 +98,24 @@ public class MemberController {
 		memberService.deleteMember(vo);
 		return "logout.do";
 	}
-	//아이디 중복체크 
+	// 아이디 찾기 
 	@RequestMapping("/idCheck.do")
 	@ResponseBody
 	public String idCheck(MemberVO vo, Model model) {
 		 MemberVO mem = memberService.checkMember(vo);
+		 String check ="";
+		 if(mem != null) {
+			 check="no";
+		 }else if(mem == null) {
+			 check="ok";
+		 }
+		 return check;
+	}
+	// 아이디 중복체크 
+	@RequestMapping("/checkID.do")
+	@ResponseBody
+	public String checkID(MemberVO vo) {
+		 MemberVO mem = memberService.checkID(vo);
 		 String check ="";
 		 if(mem != null) {
 			 check="no";

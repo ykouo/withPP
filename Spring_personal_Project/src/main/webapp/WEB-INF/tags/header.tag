@@ -3,12 +3,13 @@
 	<!--  메뉴바  -->
  	 <header class="site-navbar site-navbar-target" role="banner">
 	<!-- 로그인 버튼 -->
-	<c:if test="${empty mem}">
+	<c:if test="${empty mem && empty kakaoVO && empty naverVO}">
 		<div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
 			<a href="login.jsp" class="login nav-link">login</a> <!-- class="nav-link" -->
         </div>
     </c:if>
-    <c:if test="${! empty mem}">
+
+    <c:if test="${!empty mem}">
     	<form name="mypage" action="goMypage.do" method="post">
 				<input type="hidden" name="mid" value="${mem.mid}">
 				<input type="hidden" name="mpw" value="${mem.mpw}">
@@ -18,7 +19,19 @@
 			<a href="#" onclick="javascript:document.mypage.submit();" class="login nav-link" style="display:inline-block;">Mypage</a>
 			<a href="logout.do" class="login nav-link" style="display:inline-block;">logout</a></span> <!-- class="nav-link" -->
         </div> 
-    </c:if>    
+    </c:if>
+     <c:if test="${!empty kakaoVO}">
+         <div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
+			<span class="nickname">[${kakaoVO.mid}]님
+			<a href="kakaoLogout.do" class="login nav-link" style="display:inline-block;">logout</a></span> <!-- class="nav-link" -->
+        </div>    
+     </c:if>
+     <c:if test="${!empty naverVO}">
+         <div class = "login-div" align="right"> <!-- 로그인버튼 오른쪽 배치  -->
+			<span class="nickname">[${naverVO.mid}]님
+			<a href="naverLogout.do" class="login nav-link" style="display:inline-block;">logout</a></span> <!-- class="nav-link" -->
+        </div>    
+     </c:if>    
     <!-- /로그인 버튼 -->  
         <div class="container">
           <div class="row align-items-center position-relative">

@@ -11,7 +11,9 @@ public class MemberVO {
 	private String nickname;// 닉네임[NN] 	// DB: NICKNAME VARCHAR(100) NOT NULL,
 	private String phone;	// 휴대폰번호[NN] 	// DB: PHONE VARCHAR(50) NOT NULL,
 	private String birth;	// 생일[NN] 		// DB: BIRTH VARCHAR(50) NOT NULL,
-	private String address;	// 주소[NN]		// DB: ADDRESS VARCHAR(200) NOT NULL,
+	private String postcode;//POSTCODE VARCHAR(100) DEFAULT 'POSTCODE',
+	private String roadaddress;//ROADADDRESS VARCHAR(200) DEFAULT 'ROAD ADDRESS',
+	private String detailaddress;//DETAILADDRESS VARCHAR(200) DEFAULT 'DETAIL ADDRESS',
 	private String email;	// 이메일[NN]		// DB: EMAIL VARCHAR(100) NOT NULL,
 	private String role;	// 회원,관리자 구분 	// DB: ROLE VARCHAR(50) DEFAULT 'USER',
 	private String accesstoken;// 회원가입 주관	// DB: ACCESS_TOKEN VARCHAR(100) DEFAULT 'withpp',
@@ -65,11 +67,24 @@ public class MemberVO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getPostcode() {
+		return postcode;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	public String getRoadaddress() {
+		return roadaddress;
+	}
+	public void setRoadaddress(String roadaddress) {
+		this.roadaddress = roadaddress;
+	}
+	public String getDetailaddress() {
+		return detailaddress;
+	}
+	public void setDetailaddress(String detailaddress) {
+		this.detailaddress = detailaddress;
 	}
 	public String getEmail() {
 		return email;
@@ -100,9 +115,9 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [mid=" + mid + ", mpw=" + mpw + ", nickname=" + nickname + ", phone=" + phone + ", birth="
-				+ birth + ", address=" + address + ", email=" + email + ", role=" + role + ", accesstoken="
-				+ accesstoken + ", mdate=" + mdate + ", profileimage=" + profileimage + ", fileUpLoad=" + fileUpLoad
-				+ "]";
+				+ birth + ", postcode=" + postcode + ", roadaddress=" + roadaddress + ", detailaddress=" + detailaddress
+				+ ", email=" + email + ", role=" + role + ", accesstoken=" + accesstoken + ", mdate=" + mdate
+				+ ", profileimage=" + profileimage + ", fileUpLoad=" + fileUpLoad + "]";
 	}
 
 

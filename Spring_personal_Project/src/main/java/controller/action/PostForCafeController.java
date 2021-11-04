@@ -2,7 +2,9 @@ package controller.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +29,17 @@ public class PostForCafeController {
 	private PostForCafeService pfcafeService;
 	@Autowired
 	private CommForCafeService cfcafeService;
+	
+	@ModelAttribute("sm")
+	public Map<String,String> searchMap(){
+		Map<String,String> sm=new HashMap<String,String>();
+		sm.put("title", "title");
+		sm.put("nickname", "nickname");
+		sm.put("location", "location");
+		return sm;
+	}
+	
+	
 	// 메인 화면으로
 	@RequestMapping("/main.do")
 	public String main() {
@@ -82,7 +95,7 @@ public class PostForCafeController {
 		} 
 		
 		return "redirect:showPostList.do";
-		//return "showPost.do?pnum="+vo.getPnum();
+		//return "showPost.do?pnum="+pnum;
 	}
 	// 게시글 수정 페이지로 가기 
 	@RequestMapping("/goEditPost.do") 
@@ -102,10 +115,12 @@ public class PostForCafeController {
 			vo.setThumnail("image/"+filename);
 			fileUpLoad.transferTo(new File("C:\\Users\\ykouo\\git\\withPP\\Spring_personal_Project\\src\\main\\webapp\\image\\"+filename));
 			pfcafeService.updatePost(vo);
+			pfcafeService.updateCnt2(vo);
 		}else {
 			System.out.println(vo.getThumnail()); 
 			vo.setThumnail(vo.getThumnail()); 
 			pfcafeService.updatePost(vo);
+			pfcafeService.updateCnt2(vo);
 		}
 		return "redirect:showPost.do?pnum="+vo.getPnum();
 	}
@@ -113,7 +128,8 @@ public class PostForCafeController {
 	@RequestMapping("/updateHeart.do")
 	public String updateHeart(PostForCafeVO vo, Model model) {
 		System.out.println("updateheart: "+vo);
-		pfcafeService.updateHeart(vo);	
+		pfcafeService.updateHeart(vo);
+		pfcafeService.updateCnt2(vo);
 		return "redirect:showPost.do?pnum="+vo.getPnum();
 	}
 	// 게시글 삭제 
@@ -121,5 +137,67 @@ public class PostForCafeController {
 	public String deletepost(PostForCafeVO vo) {
 		pfcafeService.deletePost(vo);
 		return "redirect:showPostList.do";
+	}
+	@RequestMapping("/searchPost.do")
+	public String searchPostList(HttpServletRequest request,PostForCafeVO vo,Model model, Pagenation paging) {
+		
+		System.out.println("여기 왔니?");
+		
+		System.out.println(vo.getCondition());
+		System.out.println(vo.getKeyword());
+		
+		if(vo.getCondition().equals("title")) {
+			List<PostForCafeVO> searchList = pfcafeService.getPostListTitleSearch(vo);
+			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+			int totalCnt = pfcafeService.getPostCnt();
+			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
+			paging.setPageNum(page);
+			paging.setTotalCount(totalCnt);
+
+			page = ((page - 1) * 10) + 1;
+			paging.setPageSize(page + 9);
+			
+			System.out.println("paging : " + paging);
+			model.addAttribute("paging", paging);	
+			System.out.println("searchList: " + searchList);			
+			model.addAttribute("pfcafeList", searchList);
+			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+		}
+		if(vo.getCondition().equals("nickname")) {
+			List<PostForCafeVO> searchList = pfcafeService.getPostListNickSearch(vo);
+			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+			int totalCnt = pfcafeService.getPostCnt();
+			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
+			paging.setPageNum(page);
+			paging.setTotalCount(totalCnt);
+
+			page = ((page - 1) * 10) + 1;
+			paging.setPageSize(page + 9);
+			System.out.println("paging : " + paging);
+			model.addAttribute("paging", paging);
+			System.out.println("searchList: " + searchList);			
+			model.addAttribute("pfcafeList", searchList);
+			System.out.println(vo.getKeyword());
+			System.out.println(vo.getCondition());
+			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+		}
+		if(vo.getCondition().equals("location")) {
+			List<PostForCafeVO> searchList = pfcafeService.getPostListLocationSearch(vo);
+			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+			int totalCnt = pfcafeService.getPostCnt();
+			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
+			paging.setPageNum(page);
+			paging.setTotalCount(totalCnt);
+			page = ((page - 1) * 10) + 1;
+			paging.setPageSize(page + 9);
+			System.out.println("paging : " + paging);
+			model.addAttribute("paging", paging);
+			System.out.println("searchList: " + searchList);			
+			model.addAttribute("pfcafeList", searchList);
+			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+		}
+		
+	
+		return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 	}
 }

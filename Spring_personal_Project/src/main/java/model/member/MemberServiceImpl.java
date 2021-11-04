@@ -1,9 +1,11 @@
 package model.member;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
+
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -45,7 +47,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO checkMember(MemberVO vo) {
-		
 		return memberDAO.checkMember(vo);
 	}
 
@@ -58,6 +59,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO searchMember(MemberVO vo) {	
 		return memberDAO.searchMember(vo);
+	}
+
+	@Override
+	public void updatePwMember(MemberVO vo) {
+		memberDAO.updatePwMember(vo);
+		
+	}
+
+	@Override
+	public MemberVO checkID(MemberVO vo) {		
+		return memberDAO.checkID(vo);
 	}
 
 }

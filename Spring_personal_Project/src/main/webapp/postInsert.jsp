@@ -34,13 +34,11 @@
 		<mytag:header />
 
 		<div class="ftco-blocks-cover-1">
-			<div class="ftco-cover-1"
-				style="background-image: url('images/hero_1.jpg');">
+			<div class="ftco-cover-1" style="background-image: url('images/dog4.png');">
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
 						<div class="col-lg-6 text-center">
-							<h1>WritePage</h1>
-							<span>작성자 아이디 : ${mem.mid}</span><span>작성자 닉네임 : ${mem.nickname}</span>
+							<h1>NEW</h1>
 						</div>
 					</div>
 				</div>
@@ -51,34 +49,42 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
 						<div class="row align-items-center justify-content-center">
-						<form action="insertPost.do" id="postWrite" class="postTable" method="post" style="text-align: left" enctype="multipart/form-data"> 
-							<input type="hidden" name="mid" value="${mem.mid}">
-							<input type="hidden" name="nickname" value="${mem.nickname}">
+						<form action="insertPost.do" id="postWrite" class="postTable" method="post" enctype="multipart/form-data"> 
+							<c:if test="${!empty mem}">
+								<input type="hidden" name="mid" value="${mem.mid}">
+								<input type="hidden" name="nickname" value="${mem.nickname}">
+							</c:if>
+							<c:if test="${!empty kakaoVO }">
+								<input type="hidden" name="mid" value="${kakaoVO.mid}">
+								<input type="hidden" name="nickname" value="${kakaoVO.nickname}">
+							</c:if>
+							<c:if test="${!empty naverVO }">
+								<input type="hidden" name="mid" value="${naverVO.mid}">
+								<input type="hidden" name="nickname" value="${naverVO.nickname}">
+							</c:if>
 							<table> 
 								<tr>
-									<td class="category">미리보기</td>
-								 	<td><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
-   								 	<td><a href="javascript:void(0);" class="dellink">삭제</a></td>
+									<td class="category">PREVIEW</td>
+								 	<td colspan="2"><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>		
    								 </tr>
    								 <tr>	
-   								 	<td class="category">썸네일</td>
+   								 	<td class="category">THUMNAIL</td>
 									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector"
-										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
-										multiple  style="width:100%; resize:none;" />
+										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png" multiple style="resize:none;" />
 									</td>
 								</tr>
 								<tr>
-									<td class="category">제목</td>
-									<td colspan="2"><input type="text" class="textbox" name="title" value="${data.title}" required="required"  style="width:100%; resize:none;"></td>
+									<td class="category">TITLE</td>
+									<td colspan="2"><input id="title" type="text" class="textbox" name="title" required="required" style="resize:none;"></td>
 								</tr>
 								<tr>
-									<td class="category">내용</td>
-									<td colspan="2"><textarea name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"  style="width:100%; resize:none;">${data.content}</textarea></td>
+									<td class="category">CONTENT</td>
+									<td colspan="2"><textarea id="content"name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"></textarea></td>
 								</tr>
 								<tr>
-									<td class="category">지역</td>
+									<td class="category">LOCATION</td>
 									<td colspan="2">
-										<select class="textbox" id="location"  onchange="javascript:selectLocation();"name="location" required="required" style="width:100%; resize:none;" style="width:100%; resize:none;">
+										<select class="textbox" id="location"  onchange="javascript:selectLocation();"name="location" required="required" style="resize:none;" >
 											<option value="서울">서울</option>
 											<option value="경기도">경기도</option>
 											<option value="인천">인천</option>
@@ -99,22 +105,20 @@
 									</td>
 								</tr>
 								<tr>
-									<td>주소</td>
-									<td><input type="text" id="roadAddress" name="locaddress" style="width:320px;" placeholder="주소"  style="width:100%; resize:none;"/>
-									</td>
-									<td>
-										<input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색">
-									</td>
-									
+									<td>POST CODE</td>
+									<td colspan="2"><input id="postcode" type="text" name="postcode" placeholder="우편번호">    
+									<input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>
+								<tr>
+									<td>ADDRESS</td>
+									<td colspan="2"><input type="text" id="roadAddress" name="roadaddress" /><br></td>
 								</tr>
 								<tr>
-								<tr>
-									<td>상세주소</td>
-									<td colspan="3"><input type="text" id="detailAddress" name="locaddress" placeholder="상세 주소" value="${data.locaddress}" style="width:100%; resize:none;" /></td>
+									<td>DETAIL ADDRESS</td>
+									<td colspan="2"><input type="text" id="detailAddress" name="detailaddress" placeholder="상세 주소" /><br></td>	
 								</tr>
 								<tr>
-									<td class="category">전화번호</td>
-									<td colspan="2"><input type="tel" id="phoneNum" class="textbox" name="loccall" value="${data.loccall}" required="required" maxlength="13" style="width:100%; resize:none;"></td>
+									<td class="category">CALL</td>
+									<td colspan="2"><input type="tel" id="phoneNum" class="textbox" name="phone"  required="required" maxlength="13" style="resize:none;"></td>
 								</tr>		
 								<tr>
 									<td colspan="3" align="center"><input type="submit" class="submitBtn" value="글작성"></td>
@@ -138,8 +142,9 @@
 	<script src="withPPjs/upload.js"></script>
 	<mytag:js />
 	<!-- js추가  -->
-	<script src="withPPjs/post.js"></script>
+	<script src="withPPjs/searchPost.js"></script>
 	<script src="withPPjs/beforeunload.js"></script>
+	<script src="withPPjs/autoHypen.js"></script>
 </body>
 </html>
 

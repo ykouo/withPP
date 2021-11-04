@@ -34,7 +34,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="anykouo@gmail.com" />
-		<property name="password" value="구글메일API" />
+		<property name="password" value="메일앱키" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.starttls.enable">true</prop>

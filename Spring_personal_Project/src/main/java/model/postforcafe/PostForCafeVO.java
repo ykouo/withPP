@@ -11,8 +11,10 @@ public class PostForCafeVO {
 	private String title;//TITLE VARCHAR(300) NOT NULL,
 	private String thumnail;//THUMNAIL VARCHAR(300) DEFAULT '/images/thumnail.png',
 	private String content;//CONTENT VARCHAR(1500) NOT NULL,
-	private String locaddress;//LOC_ADDRESS VARCHAR(200) NOT NULL,
-	private String loccall;//LOC_CALL VARCHAR(200) DEFAULT '010-0000-0000',
+	private String postcode;//POSTCODE VARCHAR(100) DEFAULT 'POSTCODE',
+	private String roadaddress;//ROADADDRESS VARCHAR(200) DEFAULT 'ROAD ADDRESS',
+	private String detailaddress;//DETAILADDRESS VARCHAR(200) DEFAULT 'DETAIL ADDRESS',
+	private String phone;//LOC_CALL VARCHAR(200) DEFAULT '010-0000-0000',
 	private String location;//LOCATION VARCHAR(100) DEFAULT '지역미입력',
 	private int cnt;//CNT INT DEFAULT 0 NOT NULL,
 	private String heart;//HEART VARCHAR(50) DEFAULT 'N',
@@ -62,17 +64,30 @@ public class PostForCafeVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getLocaddress() {
-		return locaddress;
+
+	public String getPostcode() {
+		return postcode;
 	}
-	public void setLocaddress(String locaddress) {
-		this.locaddress = locaddress;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
-	public String getLoccall() {
-		return loccall;
+	public String getRoadaddress() {
+		return roadaddress;
 	}
-	public void setLoccall(String loccall) {
-		this.loccall = loccall;
+	public void setRoadaddress(String roadaddress) {
+		this.roadaddress = roadaddress;
+	}
+	public String getDetailaddress() {
+		return detailaddress;
+	}
+	public void setDetailaddress(String detailaddress) {
+		this.detailaddress = detailaddress;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getLocation() {
 		return location;
@@ -118,14 +133,16 @@ public class PostForCafeVO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
+	// toString()
 	@Override
 	public String toString() {
 		return "PostForCafeVO [pnum=" + pnum + ", mid=" + mid + ", nickname=" + nickname + ", title=" + title
-				+ ", thumnail=" + thumnail + ", content=" + content + ", locaddress=" + locaddress + ", loccall="
-				+ loccall + ", location=" + location + ", cnt=" + cnt + ", heart=" + heart + ", wdate=" + wdate
-				+ ", fileUpLoad=" + fileUpLoad + ", condition=" + condition + ", keyword=" + keyword + "]";
+				+ ", thumnail=" + thumnail + ", content=" + content + ", postcode=" + postcode + ", roadaddress="
+				+ roadaddress + ", detailaddress=" + detailaddress + ", phone=" + phone + ", location=" + location
+				+ ", cnt=" + cnt + ", heart=" + heart + ", wdate=" + wdate + ", fileUpLoad=" + fileUpLoad
+				+ ", condition=" + condition + ", keyword=" + keyword + "]";
 	}
-	
-	// toString()
+
 	
 }

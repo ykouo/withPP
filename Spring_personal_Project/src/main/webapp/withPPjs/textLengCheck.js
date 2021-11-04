@@ -1,4 +1,10 @@
-$(document).ready(function() {
+
+
+
+
+
+
+/*$(document).ready(function() {
 
 	$('#titleInputCheck').on('keyup', function() {
 
@@ -21,3 +27,4 @@ $(document).ready(function() {
 	
 
 });
+*/

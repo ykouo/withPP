@@ -2,14 +2,15 @@
 
 	var title = document.getElementById("title");
 	var content = document.getElementById("content");
-	var location = document.getElementById("titleInputCheck");
-	var locaddress = document.getElementById("titleInputCheck");
-	var loccall = document.getElementById("titleInputCheck");
+	var postcode = document.getElementById("postcode");
+	var detailaddress = document.getElementById("detailAddress");
+	var roadaddress = document.getElementById("roadAddress");
+	var phone = document.getElementById("phoneNum");
+	var phone = document.getElementById("phoneNum");
+	var qacontent = document.getElementById("QAcontent");
 
-	
-
-	if(!((title==null && content==null && location==null && loccall==null && locaddress==null) || (title=="" && content=="" && location=="" && loccall=="" && locaddress==""))){
-		$(window).on("beforeunload", function() {
+	if(!((title==null && content==null &&  postcode==null && detailaddress==null && roadaddress==null && phone==null) || (title=="" && content=="" && postcode=="" && detailaddress=="" && roadaddress=="" && phone=="") || (qacontent==null)||(qacontent==""))){
+		$(window).on("beforeunload", function() { 
 			return "작성중인 글이 존재합니다. 페이지를 나가시겠습니까?";
 		});
 

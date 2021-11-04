@@ -1,41 +1,49 @@
 package model.kakao;
 
 public class KakaoVO {
-	private String user_name;
-	private String profile_img;
+	private String mid;
+	private String nickname;
+	private String profileImage;
 	private String email;
-	private String profile_nickname;
-	private String birthday;
+
+	private String birth;
 	
-	public String getUser_name() {
-		return user_name;
+	public String getMid() {
+		return mid;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
-	public String getProfile_img() {
-		return profile_img;
+	public String getProfileImage() {
+		return profileImage;
 	}
-	public void setProfile_img(String profile_img) {
-		this.profile_img = profile_img;
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
+
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getProfile_nickname() {
-		return profile_nickname;
+
+	public String getBirth() {
+		return birth;
 	}
-	public void setProfile_nickname(String profile_nickname) {
-		this.profile_nickname = profile_nickname;
+	public void setBirth(String birth) {
+		this.birth= birth;
 	}
-	public String getBirthday() {
-		return birthday;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	@Override
+	public String toString() {
+		return "KakaoVO [mid=" + mid + ", nickname=" + nickname + ", profileImage=" + profileImage + ", email=" + email
+				+ ", birth=" + birth+ "]";
 	}
 	
 	

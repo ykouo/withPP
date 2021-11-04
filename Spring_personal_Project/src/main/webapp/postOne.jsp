@@ -43,8 +43,9 @@
 				<input type="hidden" name="title" value="${data.title}">
 				<input type="hidden" name="thumnail" value="${data.thumnail}">
 				<input type="hidden" name="content" value="${data.content}">
-				<input type="hidden" name="locaddress" value="${data.locaddress}">
-				<input type="hidden" name="loccall" value="${data.loccall}">
+				<input type="hidden" name="roadaddress" value="${data.roadaddress}">
+				<input type="hidden" name="detailaddress" value="${data.detailaddress}">
+				<input type="hidden" name="phone" value="${data.phone}">
 				<input type="hidden" name="location" value="${data.location}">
 				<input type="hidden" name="cnt" value="${data.cnt}">
 				<input type="hidden" name="heart" value="${data.heart}">
@@ -59,13 +60,12 @@
             	 </span>
             	  <span class="d-block mb-3 text-white" data-aos="fade-up">${data.wdate} 
             	  <span class="mx-2 text-primary">&bullet;</span> by ${data.mid} <span class="mx-2 text-primary">&bullet;</span> 조회수 [${data.cnt}]</span>
-            	  
-                	<h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">[${data.location}]${data.title}</h1>
-           		<c:if test="${mem.mid eq data.mid}">
+            	 <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">[${data.location}]${data.title}</h1>
+           		<c:if test="${mem.mid eq data.mid || kakaoVO.mid eq data.mid || naverVO.mid eq data.mid }">
            		<input type="submit" value="수정하기">
            	 	</c:if>
            	 </form>
-           	 <c:if test="${mem.mid eq data.mid}">
+           	 <c:if test="${mem.mid eq data.mid || kakaoVO.mid eq data.mid || naverVO.mid eq data.mid}">
            	  <form action="deletePost.do" method="post" > 
            	 	<input type="hidden" name="pnum" value="${data.pnum}">
            	 	<input type="submit" value="삭제하기">
@@ -81,17 +81,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 blog-content">
-            <p class="lead">${data.content}</p>
-            <blockquote><p>${data.loccall}</p></blockquote>
-
-            <blockquote><p>${data.locaddress}</p></blockquote>
+            <p class="lead"><b>주소 :</b> [${data.postcode}] ${data.roadaddress} ${data.detailaddress}</p>
+           	<blockquote><p><b> 연락처 :</b> ${data.phone}</p></blockquote>
+           	<blockquote><p><b> 참고사항 : </b>${data.content}</p></blockquote>
 
             <div class="pt-5">
-              <p>Categories:${data.location} <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              <p>Tags: <a href="#">#${data.location}</a></p>
             </div>
 
+<!--  댓글 시작  -->
             <div class="pt-5">
-              <h3 class="mb-5"><%-- ${commCnt} --%>Comments</h3>
+              <h3 class="mb-5">Comments</h3>
                <ul class="comment-list">
                 <c:forEach var="comm" items="${commData}">
                 <li class="comment">
@@ -102,8 +102,8 @@
                     <h3>${comm.nickname}</h3>
                     <div class="meta">${comm.cdate}</div>
                     <p>${comm.comm}</p>
-                    <c:if test="${mem.mid eq comm.mid}">
-                    	<p><a href="deleteComm.do?cnum=${comm.cnum}&pnum=${data.pnum}" class="reply">댓글삭제</a></p>
+                    <c:if test="${mem.mid eq comm.mid || kakaoVO.mid eq comm.mid}">
+                    	<p><button onclick="location.href='deleteComm.do?cnum=${comm.cnum}&pnum=${data.pnum}'" class="btn-primary">댓글삭제</button></p>
                     </c:if>
                     <p><a href="clickLike.do?cnum=${comm.cnum}&pnum=${data.pnum}" >👍🏻</a> : ${comm.likecnt}</p>
                   </div>
@@ -111,9 +111,9 @@
                 </c:forEach>
                 
                 <li>
-                <c:if test="${empty mem}">
+                <c:if test="${empty mem && empty kakaoVO && empty naverVO}">
                 	<div class="comment-body">
-                    <textarea disabled="disabled" readonly="readonly" style="resize: none; width:300px;">로그인후 이용가능합니다:D</textarea>
+                    <textarea disabled="disabled" readonly="readonly" style="resize: none; width:50%;height:100px;">로그인후 이용가능합니다:D</textarea>
                     <div class="meta"></div>
                   </div>
                 	
@@ -130,13 +130,49 @@
                     <input type="hidden" name="mid" value="${mem.mid}">
                     <input type="hidden" name="nickname" value="${mem.nickname}">
                     <input type="hidden" name="profileimage" value="${mem.profileimage}">
+                    <input type="text" id="commBox" name="comm" style="resize: none;" required="required">                
+                    <input type="submit" class="reply" value="등록">
+                  </div>
+                </form>
+                </c:if>
+                <c:if test="${!empty kakaoVO}">
+                <form action="insertComm.do" method="post">
+                 <div class="vcard bio">
+                    <img src="images/thumnail.png" alt="Free Website Template by Free-Template.co">
+                  </div>
+                
+ 				<div class="comment-body">
+                    <h3>${kakaoVO.nickname}</h3>
+                <div class="meta"></div>
+                    <input type="hidden" name="pnum" value="${data.pnum}">
+                    <input type="hidden" name="mid" value="${kakaoVO.mid}">
+                    <input type="hidden" name="nickname" value="${kakaoVO.nickname}">
+                    <input type="hidden" name="profileimage" value="images/thumnail.png">
                     <input type="text" name="comm" style="resize: none;" required="required">                
                     <input type="submit" class="reply" value="등록">
                   </div>
                 </form>
                 </c:if>
-                </li>
+                <c:if test="${!empty naverVO}">
+                <form action="insertComm.do" method="post">
+                 <div class="vcard bio">
+                    <img src="images/thumnail.png" alt="Free Website Template by Free-Template.co">
+                  </div>
                 
+ 				<div class="comment-body">
+                    <h3>${naverVO.nickname}</h3>
+                <div class="meta"></div>
+                    <input type="hidden" name="pnum" value="${data.pnum}">
+                    <input type="hidden" name="mid" value="${naverVO.mid}">
+                    <input type="hidden" name="nickname" value="${naverVO.nickname}">
+                    <input type="hidden" name="profileimage" value="images/thumnail.png">
+                    <input type="text" name="comm" style="resize: none;" required="required">                
+                    <input type="submit" class="btn btn-primary btn-md text-white" value="등록">
+                  </div>
+                </form>
+                </c:if>
+                </li>
+             
               </ul> 
               <!-- END comment-list -->
 
@@ -149,7 +185,7 @@
             <div class="sidebar-box">
               <img src="${mem.profileimage}" alt="Free Website Template by Free-Template.co" class="img-fluid mb-4 w-50 rounded-circle">
               <h3 class="text-black">${mem.nickname}</h3>
-              <p><a href="#" class="btn btn-primary btn-md text-white">Read More</a></p>
+              <!-- <p><a href="#" class="btn btn-primary btn-md text-white">Read More</a></p> -->
             </div>
 
 

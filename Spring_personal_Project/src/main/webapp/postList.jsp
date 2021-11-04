@@ -41,7 +41,7 @@
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
                   <!-- <h1 style="color:gold;">For Pet</h1> -->
-                  <c:if test="${! empty mem}">
+                  <c:if test="${! empty mem || ! empty kakaoVO || ! empty naverVO}">
                   	<button type="button" onclick="location.href='postInsert.jsp;'">글작성</button>
                   </c:if>
                 </div>
@@ -56,8 +56,7 @@
           <div class="col-lg-3 col-md-6 mb-5">
             <div class="post-entry-1 h-100">
               <a href="showPost.do?pnum=${v.pnum}">
-                <img src="${v.thumnail}" alt="썸네일"
-                 class="img-fluid">
+                <img src="${v.thumnail}" alt="썸네일" class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 <span class="meta">${v.wdate} 조회수 : ${v.cnt}</span>
@@ -113,7 +112,7 @@
 
     <div class="container">
 	<div class="row" style="justify-content: center;">
-		<form action="searchPostList.do" method="post">
+		<form action="searchPost.do" method="post">
 			<table>
 				<!-- condition keyword -->
 				<tr>

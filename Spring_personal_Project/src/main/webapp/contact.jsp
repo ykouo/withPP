@@ -10,7 +10,7 @@
     <!--  파비콘 추가  -->
     <mytag:Fabicon/>
  	<!-- 구글맵 API 추가 -->
-	<script src="http://maps.google.com/maps/api/js?key=구글맵API등록&region=kr"></script>
+	<script src="http://maps.google.com/maps/api/js?key=구글맵키&region=kr"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- styleLink모음 태그 -->
@@ -61,11 +61,11 @@
         <div class="row">
           <div class="col-lg-8 mb-5" >
             <h2>Q&A Send</h2>
-            <form action="mail.do" method="post">
+            <form action="mail.do" method="post" id="postWrite">
 	          <input type="hidden" name="to" value="anykouo@gmail.com"/>
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" name="from" class="form-control" placeholder="답변받을 이메일주소"  onsubmit="emailCheck();">
+                  <input type="email" name="from" id="email" class="form-control" placeholder="답변받을 이메일주소" pattern = "^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$">
                 </div>
               </div>
               <c:if test="${empty mem}">
@@ -85,7 +85,7 @@
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="content"  id="write" class="form-control" placeholder="문의내용을 작성하세요" cols="30" rows="10" maxlength="500" style="resize: none;"></textarea>
+                  <textarea name="content" class="form-control" id="QAcontent" min="1" placeholder="문의내용을 작성하세요" cols="30" rows="10" maxlength="500" style="resize: none;"></textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -119,8 +119,7 @@
 	<!-- js리스트 태그 -->
 	<mytag:js/>
     <!-- js추가  -->
-    <script src="js/contact.js"></script>
-	<script src="withPPjs/resize.js"></script>
-	<script src="withPPjs/emailCheck.js"></script>
+    <script src="withPPjs/googleMap.js"></script>
+	<script src="withPPjs/beforeunload.js"></script>
   </body>
 </html>

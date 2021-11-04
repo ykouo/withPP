@@ -33,7 +33,10 @@ public class PostForCafeServiceImpl implements PostForCafeService{
 	public void updateCnt(PostForCafeVO vo) {
 		pfcafeDAO.updateCnt(vo);
 	}
-
+	@Override
+	public void updateCnt2(PostForCafeVO vo) {
+		pfcafeDAO.updateCnt2(vo);
+	}
 	@Override
 	public void deletePost(PostForCafeVO vo) {
 		pfcafeDAO.deletePost(vo);
@@ -62,6 +65,18 @@ public class PostForCafeServiceImpl implements PostForCafeService{
 	@Override
 	public List<PostForCafeVO> getPostListPagenation(int startRow, int endRow) {
 		return pfcafeDAO.getPostListPagenation(startRow, endRow);
+	}
+	@Override
+	public List<PostForCafeVO> getPostListTitleSearch(PostForCafeVO vo) {
+		return pfcafeDAO.getPostListTitleSearch(vo);
+	}
+	@Override
+	public List<PostForCafeVO> getPostListNickSearch(PostForCafeVO vo) {
+		return pfcafeDAO.getPostListNickSearch(vo);
+	}
+	@Override
+	public List<PostForCafeVO> getPostListLocationSearch(PostForCafeVO vo) {
+		return pfcafeDAO.getPostListLocationSearch(vo);
 	}
 
 

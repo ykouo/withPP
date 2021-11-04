@@ -7,7 +7,7 @@
 <html lang="en">
 
   <head>
-    <title>withPP - with Pet&People</title>
+    <title>withPP - with Pet&amp;People</title>
     <!-- 파비콘 커스텀 태그 -->
   	<mytag:Fabicon/>
     <meta charset="utf-8">
@@ -97,7 +97,7 @@
     </div>
 	<!-- js리스트 태그 -->
 	<mytag:js/>
-	<script src="withPPjs/main.js"></script>
+	<script src="withPPjs/startDate.js"></script>
   </body>
 
 </html>

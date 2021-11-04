@@ -17,8 +17,7 @@ public class Crolling {
 		return str; 
 	}
 	public static void main(String[] args) {
-		// 크롤링해 올 url 지정 
-				// 알라딘 홈페이지 소설/시/희곡 베스트 셀러 페이지 크롤링
+				// 크롤링해 올 url 지정 			
 				String url ="https://sasamegoto-ouo.tistory.com/category";
 				Document doc = null;
 				

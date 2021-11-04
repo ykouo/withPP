@@ -12,7 +12,7 @@
 			center : ll
 		} // center라는 속성은 맵에서 내 현재위치를 표시하는 화살표 같은것
 		); // zoom: 숫자가 클수록 확대가된다.
-		var myIcon = new google.maps.MarkerImage("images/HAH.png")
+		var myIcon = new google.maps.MarkerImage("images/here.png")
 		var marker = new google.maps.Marker({
 			position : ll,
 			map : map,

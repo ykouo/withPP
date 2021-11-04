@@ -52,17 +52,18 @@ public class MailController {
 	@RequestMapping("/tempPw.do") 
 	@ResponseBody
 	public String sendTempPw(MailVO vo, MemberVO mvo) { 
-		System.out.println("임시비밀번호보내기 vo :" + vo);
-		System.out.println(mvo);
 		try { 		
+			mvo.setEmail(vo.getTo());
+			System.out.println("이거 확인:" + mvo);
 			if(memberService.checkMember(mvo)==null) {
 				System.out.println("메일발송실패");		
+				return "<script>alert('WithPP hava no Id T^T You search first ID');history.go(-1);</script>";
 			}else{			
 			String from = "anykouo@gmail.com";
 			String subject = "["+mvo.getMid()+"]님의 임시비밀번호";
 			String to = vo.getTo();
 			String content = RandomStringUtils.randomAlphanumeric(10);
-
+			
 			MimeMessage message = mailSender.createMimeMessage(); 
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
 			messageHelper.setTo(to); 
@@ -70,13 +71,17 @@ public class MailController {
 			messageHelper.setText(htmlStr,true); // html 코드를 읽을수 있도록하는 설정 
 			messageHelper.setFrom(from); 
 			messageHelper.setSubject(subject); 
+			System.out.println("임시비밀번호보내기 vo :" + vo);
 			mailSender.send(message);
+			mvo.setMpw(content);
+			mvo.setEmail(to);
+			System.out.println("메일발송 mvo: "+ mvo);
+			memberService.updatePwMember(mvo);
 			System.out.println("메일발송 완료");		
-			//res = "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+			
 			}
 		}catch(Exception e){ 
-			System.out.println(e); 
-			return "<script>alert('WithPP hava no Id T^T You search first ID');history.go(-1);</script>";
+			System.out.println(e); 		
 		}
 		return "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
 	}
@@ -88,6 +93,7 @@ public class MailController {
 		try { 		
 			if(memberService.searchMember(mvo)==null) {
 				System.out.println("메일발송실패");		
+				return "<script>alert('There is no registration history.');location.href='searchIdPw.jsp';</script>";
 			}else{			
 			mvo = memberService.searchMember(mvo);
 			System.out.println("아이디확인 : " + mvo.getMid());
@@ -105,11 +111,11 @@ public class MailController {
 			messageHelper.setSubject(subject); 
 			mailSender.send(message);
 			System.out.println("메일발송 완료");		
-			//res = "<script>alert('MailSuccess:D');location.href='login.jsp';</script>";
+			
 			}
 		}catch(Exception e){ 
-			System.out.println(e); 
-			return "<script>alert('There is no registration history.');history.go(-1);</script>";
+			//System.out.println(e); 
+			
 		}
 		return "<script>alert('MailSuccess:D');location.href='searchIdPw.jsp';</script>";
 	}	

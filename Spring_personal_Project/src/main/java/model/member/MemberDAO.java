@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import model.mail.MailVO;
+
 class MemberRowMapper implements RowMapper<MemberVO>{
 	@Override
 	public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {	
@@ -18,7 +20,9 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 		vo.setNickname(rs.getString("nickname"));
 		vo.setPhone(rs.getString("phone"));
 		vo.setBirth(rs.getString("birth"));
-		vo.setAddress(rs.getString("address"));
+		vo.setPostcode(rs.getString("postcode"));
+		vo.setRoadaddress(rs.getString("roadaddress"));
+		vo.setDetailaddress(rs.getString("detailaddress"));
 		vo.setEmail(rs.getString("email"));
 		vo.setRole(rs.getString("role"));
 		vo.setAccesstoken(rs.getString("accesstoken"));
@@ -33,17 +37,17 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 public class MemberDAO {
 
 	// SQL문
-	private final String insertMemberSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,?)";
-	private final String insertMemberSQLNoImage="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,'images/thumnail.png')";
-
-	private final String insertMemberRoleSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,ADDRESS,EMAIL,ROLE) VALUES (?,?,?,?,?,?,?,'ADMIN')";
-	private final String updateMemberSQL="UPDATE MEMBER SET MPW=?,NICKNAME=?,PHONE=?,ADDRESS=?,EMAIL=?,PROFILEIMAGE=? WHERE MID=?";
+	private final String insertMemberSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,POSTCODE,ROADADDRESS,DETAILADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private final String insertMemberSQLNoImage="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,POSTCODE,ROADADDRESS,DETAILADDRESS,EMAIL,PROFILEIMAGE) VALUES (?,?,?,?,?,?,?,?,?,'images/thumnail.png')";
+	private final String insertMemberRoleSQL="INSERT INTO MEMBER (MID,MPW,NICKNAME,PHONE,BIRTH,POSTCODE,ROADADDRESS,DETAILADDRESS,EMAIL,ROLE) VALUES (?,?,?,?,?,?,?,?,?,'ADMIN')";
+	private final String updateMemberSQL="UPDATE MEMBER SET MPW=?,NICKNAME=?,PHONE=?,POSTCODE=?,ROADADDRESS=?,DETAILADDRESS=?,EMAIL=?,PROFILEIMAGE=? WHERE MID=?";
+	private final String updatePwMemberSQL="UPDATE MEMBER SET MPW=? WHERE MID=? AND EMAIL=?";
 	private final String deleteMemberSQL="DELETE FROM MEMBER WHERE MID=? AND MPW=?";
 	private final String getMemberSQL="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
-	private final String checkMemberSQL="SELECT * FROM MEMBER WHERE MID=?";
+	private final String checkMemberSQL="SELECT * FROM MEMBER WHERE MID=? AND EMAIL=?";
 	private final String getMemberListSQL="SELECT * FROM MEMBER ORDER BY MDATE DESC";
 	private final String searchMemberSQL="SELECT * FROM MEMBER WHERE EMAIL=?";
-	private final String checkIdSQL="SELECT COUNT(MID) FROM MEMBER WHERE MID=?";
+	private final String checkIdSQL="SELECT * FROM MEMBER WHERE MID=?";
 	
 	
 	// JDBCTemplete
@@ -52,23 +56,28 @@ public class MemberDAO {
 	
 	// C 회원가입 - 홈페이지 가입시 
 	public void insertMember(MemberVO vo) { 
-		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail(),vo.getProfileimage()};
+		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getPostcode(),vo.getRoadaddress(),vo.getDetailaddress(),vo.getEmail(),vo.getProfileimage()};
 		jdbcTemplate.update(insertMemberSQL,args);
 	}
 	// C 회원가입 - 홈페이지 가입시 
 	public void insertNoImageMember(MemberVO vo) { 
-		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail()};
+		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getPostcode(),vo.getRoadaddress(),vo.getDetailaddress(),vo.getEmail()};
 		jdbcTemplate.update(insertMemberSQLNoImage,args);
 	} 	
 	// C 회원가입 - 관리자 
 	public void insertAdmin(MemberVO vo) { 
-		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getAddress(),vo.getEmail()};
+		Object[] args = {vo.getMid(),vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getBirth(),vo.getPostcode(),vo.getRoadaddress(),vo.getDetailaddress(),vo.getEmail()};
 		jdbcTemplate.update(insertMemberRoleSQL,args);
 	} 
 	// U 회원정보변경
 	public void updateMember(MemberVO vo) {
-		Object[] args = {vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getAddress(),vo.getEmail(),vo.getProfileimage(),vo.getMid()};
+		Object[] args = {vo.getMpw(),vo.getNickname(),vo.getPhone(),vo.getPostcode(),vo.getRoadaddress(),vo.getDetailaddress(),vo.getEmail(),vo.getProfileimage(),vo.getMid()};
 		jdbcTemplate.update(updateMemberSQL,args);
+	}
+	// U 임시비밀번호 회원정보 변경
+	public void updatePwMember(MemberVO vo) {
+		Object[] args = {vo.getMpw(),vo.getMid(),vo.getEmail()};
+		jdbcTemplate.update(updatePwMemberSQL,args);
 	} 
 	// D 회원탈퇴
 	public void deleteMember(MemberVO vo) {
@@ -92,13 +101,23 @@ public class MemberDAO {
 	// R - 아이디 체크 
 	public MemberVO checkMember(MemberVO vo) { 
 		try{
-		Object[] args= {vo.getMid()};
-			return	jdbcTemplate.queryForObject(checkMemberSQL, args,new MemberRowMapper()); 
+		Object[] args= {vo.getMid(),vo.getEmail()};	
+		return	jdbcTemplate.queryForObject(checkMemberSQL, args,new MemberRowMapper()); 
 		}catch(Exception e) {
 			//e.printStackTrace();
 			return null;
 		}
 	}
+	// R - 아이디 중복체크  
+		public MemberVO checkID(MemberVO vo) { 
+			try{
+			Object[] args= {vo.getMid()};	
+			return	jdbcTemplate.queryForObject(checkIdSQL, args,new MemberRowMapper()); 
+			}catch(Exception e) {
+				//e.printStackTrace();
+				return null;
+			}
+		}
 	// R - 메일로 아이디체크 
 	public MemberVO searchMember(MemberVO vo) { // R - select one // 로그인기능 
 		System.out.println("여기는 왔니?2 vo : " + vo);
