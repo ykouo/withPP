@@ -38,17 +38,18 @@ public class PostForCafeController {
 		sm.put("location", "location");
 		return sm;
 	}
+
 	
-	
-	// ∏ﬁ¿Œ »≠∏È¿∏∑Œ
+	// Î©îÏù∏ ÌôîÎ©¥ÏúºÎ°ú
 	@RequestMapping("/main.do")
 	public String main() {
 
 		return "main.jsp";
 	}
-	// ∞‘Ω√±€ ∏ÆΩ∫∆Æ  
+	// Í≤åÏãúÍ∏Ä Î¶¨Ïä§Ìä∏  
 	@RequestMapping("/showPostList.do")
 	public String postList(HttpServletRequest request,PostForCafeVO vo,Model model, Pagenation paging) {
+		
 
 		int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
 		int totalCnt = pfcafeService.getPostCnt();
@@ -64,10 +65,11 @@ public class PostForCafeController {
 		System.out.println("paging : " + paging);
 		model.addAttribute("pfcafeList", pfcafeList);
 		model.addAttribute("paging", paging);
-
+		
+		//return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 		return "postList.jsp";
 	}
-	// ∞‘Ω√±€ ªÛºº∫∏±‚ 
+	// Í≤åÏãúÍ∏Ä ÏÉÅÏÑ∏Î≥¥Í∏∞ 
 	@RequestMapping("/showPost.do")
 	public String showPost(HttpServletRequest request,PostForCafeVO vo,CommForCafeVO cvo,Model model, Pagenation paging) {
 		pfcafeService.updateCnt(vo);
@@ -78,11 +80,11 @@ public class PostForCafeController {
 		
 		return "postOne.jsp";
 	}
-	// ∞‘Ω√±€ √ﬂ∞°
+	// Í≤åÏãúÍ∏Ä Ï∂îÍ∞Ä
 	@RequestMapping("/insertPost.do")
 	public String insertPost(PostForCafeVO vo)throws IllegalStateException, IOException{
 	 
-		System.out.println("∞‘Ω√±€ √ﬂ∞° : " + vo);
+		System.out.println("Í≤åÏãúÍ∏Ä Ï∂îÍ∞Ä : " + vo);
 		MultipartFile fileUpLoad = vo.getFileUpLoad();
 		if(!fileUpLoad.isEmpty()) {
 			String filename = fileUpLoad.getOriginalFilename();
@@ -97,14 +99,14 @@ public class PostForCafeController {
 		return "redirect:showPostList.do";
 		//return "showPost.do?pnum="+pnum;
 	}
-	// ∞‘Ω√±€ ºˆ¡§ ∆‰¿Ã¡ˆ∑Œ ∞°±‚ 
+	// Í≤åÏãúÍ∏Ä ÏàòÏ†ï ÌéòÏù¥ÏßÄÎ°ú Í∞ÄÍ∏∞ 
 	@RequestMapping("/goEditPost.do") 
 	public String goEditPost(@ModelAttribute("data")PostForCafeVO vo, Model model)  {
 		//PostForCafeVO data = pfcafeService.getPost(vo);
 		//model.addAttribute("data", data);
 		return "postEdit.jsp";
 	}
-	// ∞‘Ω√±€ ºˆ¡§ 
+	// Í≤åÏãúÍ∏Ä ÏàòÏ†ï 
 	@RequestMapping("/updatePost.do")
 	public String updatepost(PostForCafeVO vo, Model model)throws IllegalStateException, IOException {
 		System.out.println("updatePost: "+vo);	
@@ -124,7 +126,7 @@ public class PostForCafeController {
 		}
 		return "redirect:showPost.do?pnum="+vo.getPnum();
 	}
-	// «œ∆Æ æ˜µ•¿Ã∆Æ 
+	// ÌïòÌä∏ ÏóÖÎç∞Ïù¥Ìä∏ 
 	@RequestMapping("/updateHeart.do")
 	public String updateHeart(PostForCafeVO vo, Model model) {
 		System.out.println("updateheart: "+vo);
@@ -132,7 +134,7 @@ public class PostForCafeController {
 		pfcafeService.updateCnt2(vo);
 		return "redirect:showPost.do?pnum="+vo.getPnum();
 	}
-	// ∞‘Ω√±€ ªË¡¶ 
+	// Í≤åÏãúÍ∏Ä ÏÇ≠Ï†ú 
 	@RequestMapping("/deletePost.do")
 	public String deletepost(PostForCafeVO vo) {
 		pfcafeService.deletePost(vo);
@@ -141,32 +143,38 @@ public class PostForCafeController {
 	@RequestMapping("/searchPost.do")
 	public String searchPostList(HttpServletRequest request,PostForCafeVO vo,Model model, Pagenation paging) {
 		
-		System.out.println("ø©±‚ ø‘¥œ?");
+		System.out.println("Ïó¨Í∏∞ ÏôîÎãà?");
 		
 		System.out.println(vo.getCondition());
 		System.out.println(vo.getKeyword());
 		
 		if(vo.getCondition().equals("title")) {
-			List<PostForCafeVO> searchList = pfcafeService.getPostListTitleSearch(vo);
+			//List<PostForCafeVO> searchList = pfcafeService.getPostListTitleSearch(vo);
 			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
-			int totalCnt = pfcafeService.getPostCnt();
+			int totalCnt = pfcafeService.searchTitleCnt(vo);
+			
 			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
 			paging.setPageNum(page);
 			paging.setTotalCount(totalCnt);
-
 			page = ((page - 1) * 10) + 1;
 			paging.setPageSize(page + 9);
-			
+			List<PostForCafeVO> searchList = pfcafeService.searchTitleListPage(vo, page, paging.getPageSize());
 			System.out.println("paging : " + paging);
 			model.addAttribute("paging", paging);	
+			String condition=vo.getCondition();
+			String keyword=vo.getKeyword();
+			model.addAttribute("condition",condition);
+			model.addAttribute("keyword",keyword);
 			System.out.println("searchList: " + searchList);			
 			model.addAttribute("pfcafeList", searchList);
-			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+			return "searchPostList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 		}
-		if(vo.getCondition().equals("nickname")) {
-			List<PostForCafeVO> searchList = pfcafeService.getPostListNickSearch(vo);
+		else if(vo.getCondition().equals("nickname")) {
+			System.out.println("nicknameÏó¨Í∏∞ ÏôîÎãà?"); // ‚úî
+			System.out.println("nicknamevo" + vo);
+			
 			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
-			int totalCnt = pfcafeService.getPostCnt();
+			int totalCnt = pfcafeService.searchNickCnt(vo);
 			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
 			paging.setPageNum(page);
 			paging.setTotalCount(totalCnt);
@@ -174,30 +182,40 @@ public class PostForCafeController {
 			page = ((page - 1) * 10) + 1;
 			paging.setPageSize(page + 9);
 			System.out.println("paging : " + paging);
+			List<PostForCafeVO> searchList = pfcafeService.searchNinknameListPage(vo, page, paging.getPageSize());
 			model.addAttribute("paging", paging);
 			System.out.println("searchList: " + searchList);			
 			model.addAttribute("pfcafeList", searchList);
+			String condition=vo.getCondition();
+			String keyword=vo.getKeyword();
+			model.addAttribute("condition",condition);
+			model.addAttribute("keyword",keyword);
 			System.out.println(vo.getKeyword());
 			System.out.println(vo.getCondition());
-			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+			return "searchPostList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 		}
-		if(vo.getCondition().equals("location")) {
-			List<PostForCafeVO> searchList = pfcafeService.getPostListLocationSearch(vo);
+		else/*(vo.getCondition().equals("location"))*/ {
+			System.out.println("locationÏó¨Í∏∞ ÏôîÎãà?");
+			
 			int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
-			int totalCnt = pfcafeService.getPostCnt();
+			int totalCnt = pfcafeService.searchLocationCnt(vo);
 			System.out.println("page: " + page + " /totalCnt : " + totalCnt);
 			paging.setPageNum(page);
 			paging.setTotalCount(totalCnt);
 			page = ((page - 1) * 10) + 1;
 			paging.setPageSize(page + 9);
+			List<PostForCafeVO> searchList = pfcafeService.searchLocationListPage(vo,page, paging.getPageSize());
 			System.out.println("paging : " + paging);
 			model.addAttribute("paging", paging);
+			String condition=vo.getCondition();
+			String keyword=vo.getKeyword();
+			model.addAttribute("condition",condition);
+			model.addAttribute("keyword",keyword);
 			System.out.println("searchList: " + searchList);			
 			model.addAttribute("pfcafeList", searchList);
-			return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
+			return "searchPostList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 		}
 		
 	
-		return "postList.jsp?condition="+vo.getCondition()+"&keyword="+vo.getKeyword();
 	}
 }

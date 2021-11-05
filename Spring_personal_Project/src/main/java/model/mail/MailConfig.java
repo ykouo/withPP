@@ -13,7 +13,7 @@ public class MailConfig {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("host");
 		mailSender.setUsername("anykouo@gmail.com");
-		mailSender.setPassword("¸ŞÀÏ¾ÛÅ°");
+		mailSender.setPassword("¸ŞÀÏ¾ÛÅ°");//¸ŞÀÏ¾ÛÅ°
 		return mailSender;
 	}
 

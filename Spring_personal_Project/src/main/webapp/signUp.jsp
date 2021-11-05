@@ -4,7 +4,6 @@
 <%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
 <!doctype html>
 <html lang="en">
-
   <head>
     <title>SignUp- withPP </title>
     <!--  파비콘 추가  -->
@@ -50,127 +49,120 @@
 	        detailAddress.focus(); // 팝업창이 닫히면 상세주소 란으로 포커싱 
 		}
 	}).open();}
-	
-
 	</script>
   </head> 
-
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"> 
-    <div class="site-wrap" id="home-section">
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
-      
+    <div class="site-wrap" id="home-section">   
 	<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 	<mytag:header/>
 	<!-- <메인 이미지> -->  
     <div class="ftco-blocks-cover-10" style="height:300px;">
-        <div class="ftco-cover-1"> <!-- style="background-image: url('images/hero_1.jpg');" -->
+        <div class="ftco-cover-1">
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center">
                   <h1><span class="text-primary">🎀 SIGN UP 🎀</span> </h1>
                   <p>🎈 Welcome withPP🤗  </p>
-                  
                 </div>
               </div>
             </div>
         </div>
       </div> 
-<!-- </메인 이미지>  -->
-
-		<div class="site-section">
-			<div class="container">
-              <div class="row align-items-center justify-content-center">
+	<!-- </메인 이미지>  -->
+	<div class="site-section">
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
-						<div class="row align-items-center justify-content-center">
+					<div class="row align-items-center justify-content-center">
 						<form action="insertMember.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data">
 							<table>
 								<tr class="tableCenter">
 									<td class="category">미리보기</td>
-								 	<td colspan="2"><img src="images/thumnail.png" class="thumb" style="width:150px;height:150px;"/></td>	
-   								 </tr>
-   								 <tr class="tableCenter">	
-   								 	<td class="category">프로필이미지</td>
-									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector"
-										name="fileUpLoad" accept="image/jpeg, image/jpg, image/png"
-										multiple/>
-									</td>
-								</tr>
-								<tr class="tableCenter">
-									<td>ID <b style="color:red">*</b></td>
 									<td colspan="2">
-										<input type="text" name="mid" id="mid" style="width:80%"required="required" >
-										<input class="checkDupli" type="button"  onclick= "checkId();"  value="중복">
-										<span class="id_ok">사용 가능한 아이디입니다.</span>
-										<span class="id_already">사용중인 아이디입니다.</span>
-									</td>									
+										<img src="images/thumnail.png" class="thumb" style="width: 150px; height: 150px;" />
+									</td>
 								</tr>
 								<tr class="tableCenter">
-									<td>PASSWORD <b style="color:red">*</b></td>
-									<td colspan="2"><input type="password" name="mpw" id="password" required="required" onkeyup="javascript:passConfirm()" placeholder="영문,특수문자(@!%*#?&),숫자를 포함한 8~16자리" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
+									<td class="category">프로필이미지</td>
+									<td colspan="2"><input type="file" class="hidden_input" id="imageSelector" name="fileUpLoad" 
+										accept="image/jpeg, image/jpg, image/png" multiple />
+									</td>
+								</tr>
+								<tr class="tableCenter">
+									<td>ID <b style="color: red">*</b></td>
+									<td colspan="2"><input type="text" name="mid" id="mid" style="width: 80%" required="required"> 
+									<input class="checkDupli" type="button" onclick="checkId();" value="중복"> 
+									<span class="id_ok">사용 가능한 아이디입니다.</span>
+									<span class="id_already">사용중인 아이디입니다.</span></td>
+								</tr>
+								<tr class="tableCenter">
+									<td>PASSWORD <b style="color: red">*</b></td>
+									<td colspan="2"><input type="password" name="mpw" id="password" required="required"
+										onkeyup="javascript:passConfirm()" placeholder="영문,특수문자(@!%*#?&),숫자를 포함한 8~16자리"
+										pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
 									</td>
 								</tr>
 								<tr>
-									<td>PASSWORD CHECK <b style="color:red">*</b></td>
-									<td colspan="2"><input type="password" id="passwordConfirm" onkeyup="javascript:passConfirm()" placeholder="비밀번호 확인" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
-									<span id="confirmMsg"></span></td>					
+									<td>PASSWORD CHECK <b style="color: red">*</b></td>
+									<td colspan="2"><input type="password" id="passwordConfirm" onkeyup="javascript:passConfirm()"
+										placeholder="비밀번호 확인" required="required" 
+										pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
+										<span id="confirmMsg"></span>
+									</td>
 								</tr>
 								<tr>
-									<td>NICKNAME <b style="color:red">*</b></td>
+									<td>NICKNAME <b style="color: red">*</b></td>
 									<td><input type="text" name="nickname" required="required"></td>
 								</tr>
 								<tr class="tableCenter">
-									<td>PHONE <b style="color:red">*</b></td>
-									<td colspan="2"><input type="tel" id="phoneNum"class="textbox" name="phone" required="required" maxlength="13" style="resize:none;"></td>
+									<td>PHONE <b style="color: red">*</b></td>
+									<td colspan="2">
+										<input type="tel" id="phoneNum"	class="textbox" name="phone" required="required"
+										maxlength="13" style="resize: none;">
+									</td>
 								</tr>
 								<tr class="tableCenter">
-									<td>BIRTH <b style="color:red">*</b></td>
+									<td>BIRTH <b style="color: red">*</b></td>
 									<td colspan="2"><input type="date" name="birth" required="required"></td>
 								</tr>
 								<tr>
 									<td>POST CODE</td>
-									<td colspan="2"><input id="postcode" type="text" name="postcode" placeholder="우편번호">    
-									<input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색"></td>
+									<td colspan="2"><input id="postcode" type="text" name="postcode" placeholder="우편번호"> 
+										<input class="primary" type="button" id="btn" onClick="searchPostCode()" value="주소검색">
+									</td>
 								<tr class="tableCenter">
-									<td>ADDRESS <b style="color:red">*</b></td>
-									<td colspan="2"><input type="text" id="roadAddress" name="roadaddress" /><br></td>
+									<td>ADDRESS <b style="color: red">*</b></td>
+									<td colspan="2"><input type="text" id="roadAddress"name="roadaddress" /><br></td>
 								</tr>
 								<tr class="tableCenter">
 									<td>DETAIL ADDRESS</td>
-									<td colspan="2"><input type="text" id="detailAddress" name="detailaddress" placeholder="상세 주소" /><br></td>	
+									<td colspan="2"><input type="text" id="detailAddress" name="detailaddress" placeholder="상세 주소" /><br></td>
 								</tr>
 								<tr class="tableCenter">
-									<td>EMAIL <b style="color:red">*</b></td>
-									<td colspan="2"><input type="email" name="email" id="email" required="required"><input type="button"  onclick= "checkEmail()" value="이메일확인">
-										<span class="email_ok">사용 가능한 이메일입니다.</span>
+									<td>EMAIL <b style="color: red">*</b></td>
+									<td colspan="2"><input type="email" name="email" id="email" required="required">
+										<input type="button" onclick="checkEmail()" value="이메일확인"> 
+										<span class="email_ok">사용 가능한 이메일입니다.</span> 
 										<span class="email_already">이미 등록된 이메일입니다.</span>
 									</td>
 								</tr>
 								<tr class="tableCenter">
 									<td>ROLE</td>
-									<td colspan="2">
-										<input type="radio" name="role" value="USER" checked="checked">회원
-									</td>
+									<td colspan="2"><input type="radio" name="role" value="USER" checked="checked">회원</td>
 								</tr>
 								<tr class="tableCenter">
 									<td colspan="3"><input type="submit" value="회원가입"></td>
 								</tr>
 							</table>
 						</form>
-						</div>
-						<div>
-							<a href="index.jsp">메인바로가기</a>
-						</div>
 					</div>
+				<div>
+					<a href="index.jsp">메인바로가기</a>
+				</div>
 				</div>
 			</div>
 		</div>
+	</div>
     <!-- footer 태그  -->
 	<mytag:footer/>
     </div>  
@@ -183,5 +175,4 @@
 	<script src="withPPjs/idCheck.js"></script>
 	<script src="withPPjs/passwordCheck.js"></script>
   </body>
-
 </html>

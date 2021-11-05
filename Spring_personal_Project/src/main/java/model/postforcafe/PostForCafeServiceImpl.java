@@ -78,6 +78,30 @@ public class PostForCafeServiceImpl implements PostForCafeService{
 	public List<PostForCafeVO> getPostListLocationSearch(PostForCafeVO vo) {
 		return pfcafeDAO.getPostListLocationSearch(vo);
 	}
+	@Override
+	public List<PostForCafeVO> searchTitleListPage(PostForCafeVO vo, int startRow, int endRow) {
+		return pfcafeDAO.searchTitleListPage(vo, startRow, endRow);
+	}
+	@Override
+	public int searchTitleCnt(PostForCafeVO vo) {
+		return pfcafeDAO.searchTitleCnt(vo);
+	}
+	@Override
+	public int searchNickCnt(PostForCafeVO vo) {
+		return pfcafeDAO.searchNickCnt(vo);
+	}
+	@Override
+	public int searchLocationCnt(PostForCafeVO vo) {
+		return pfcafeDAO.searchLocationCnt(vo);
+	}
+	@Override
+	public List<PostForCafeVO> searchLocationListPage(PostForCafeVO vo, int startRow, int endRow) {
+		return pfcafeDAO.searchLocationListPage(vo, startRow, endRow);
+	}
+	@Override
+	public List<PostForCafeVO> searchNinknameListPage(PostForCafeVO vo, int startRow, int endRow) {
+		return pfcafeDAO.searchNinknameListPage(vo, startRow, endRow);
+	}
 
 
 }

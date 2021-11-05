@@ -22,14 +22,6 @@
     
     <div class="site-wrap" id="home-section">
 
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
 
 
 	<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
@@ -54,7 +46,7 @@
         <div class="row align-items-stretch">
 		<c:forEach var="v" items="${pfcafeList}"> 
           <div class="col-lg-3 col-md-6 mb-5">
-            <div class="post-entry-1 h-100">
+            <div class="post-entry-1 h-100">            
               <a href="showPost.do?pnum=${v.pnum}">
                 <img src="${v.thumnail}" alt="썸네일" class="img-fluid">
               </a>

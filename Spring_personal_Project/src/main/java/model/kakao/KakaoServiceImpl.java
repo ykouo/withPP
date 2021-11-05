@@ -34,7 +34,7 @@ public class KakaoServiceImpl implements KakaoService{
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=카카오로그인 API KEY");  // Kakao developer의 javascript api key
+			sb.append("&client_id=카카오로그인 APIKEY");  // Kakao developer의 javascript api key 카카오로그인 APIKEY
 			sb.append("&redirect_uri=http://localhost:8088/app/kakaoCallback.do"); // Kakao developer에 등록해 둔 Redirect URI
 			sb.append("&code=" + code);
 			

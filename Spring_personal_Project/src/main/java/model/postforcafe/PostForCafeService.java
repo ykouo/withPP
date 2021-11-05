@@ -18,6 +18,11 @@ public interface PostForCafeService {
 	List<PostForCafeVO> getPostListTitleSearch(PostForCafeVO vo);
 	List<PostForCafeVO> getPostListNickSearch(PostForCafeVO vo);
 	List<PostForCafeVO> getPostListLocationSearch(PostForCafeVO vo);
-	
+	List<PostForCafeVO> searchTitleListPage(PostForCafeVO vo,int startRow, int endRow);
+	int searchTitleCnt(PostForCafeVO vo);
+	int searchNickCnt(PostForCafeVO vo);
+	int searchLocationCnt(PostForCafeVO vo);
+	List<PostForCafeVO> searchLocationListPage(PostForCafeVO vo,int startRow, int endRow);
+	List<PostForCafeVO> searchNinknameListPage(PostForCafeVO vo,int startRow, int endRow);
 }
  

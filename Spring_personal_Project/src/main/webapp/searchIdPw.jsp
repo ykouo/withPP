@@ -19,20 +19,13 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 	<div class="site-wrap" id="home-section">
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
+
 		<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 		<mytag:header />
 
 		<div class="ftco-blocks-cover-1">
 			<div class="ftco-cover-1 overlay"
-				style="background-image: url('${data.thumnail}')">
+				style="background-image: url('images/dog4.png')">
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
 						<div class="col-lg-6 text-center"></div>

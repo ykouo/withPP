@@ -16,19 +16,14 @@
 <!-- styleLink모음 태그 -->
 <mytag:styleLink />
 <script type="text/javascript">
+
+
 </script>
 </head> 
 
 <body data-spy="scroll" data-target=".site-navbar-target"data-offset="300">
 	<div class="site-wrap" id="home-section">
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
+		
 
 		<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 		<mytag:header />
@@ -86,7 +81,8 @@
 								<tr>
 									<td class="category">LOCATION</td>
 									<td colspan="2">
-										<select class="textbox" id="location" name="location" required="required" style="width:100%; resize:none;" style="resize:none;">
+										<select class="textbox" id="location" name="location"  required="required" style="width:100%; resize:none;" style="resize:none;">
+											<option selected value="${data.location}">이전선택:${data.location}</option>
 											<option value="서울">서울</option>
 											<option value="경기도">경기도</option>
 											<option value="인천">인천</option>
@@ -102,6 +98,7 @@
 											<option value="경남">경남</option>
 											<option value="경북">경북</option>
 											<option value="제주">제주</option>				
+											
 										</select>
 									</td>
 								</tr>

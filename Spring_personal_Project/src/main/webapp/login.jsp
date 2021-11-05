@@ -26,14 +26,7 @@
 
 	<div class="site-wrap" id="home-section">
 
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
+	
 
 		<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 		<mytag:header />

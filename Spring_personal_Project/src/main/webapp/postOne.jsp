@@ -20,14 +20,7 @@
     
     <div class="site-wrap" id="home-section">
 
-      <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
+
   	<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 	<mytag:header/>
 
@@ -50,13 +43,12 @@
 				<input type="hidden" name="cnt" value="${data.cnt}">
 				<input type="hidden" name="heart" value="${data.heart}">
 				<input type="hidden" name="wdate" value="${data.wdate}">
-            	 <span class="d-block mb-3 text-white" data-aos="fade-up">            	
-            	 	 <c:if test ="${data.heart eq 'N'}">
-            	 		<a href="updateHeart.do?pnum=${data.pnum}&heart=Y">🤍</a>
-            	 	</c:if>
-            	 	<c:if test ="${data.heart eq 'Y'}">
-            	 		<a href="updateHeart.do?pnum=${data.pnum}&heart=N">🖤</a>
+            	<span class="d-block mb-3 text-white" data-aos="fade-up">            	
+            	<c:if test="${! empty mem}"> 
+            		<c:if test="${mem.mid ne data.mid}">
+        	 			<a href="insertFav.do?pnum=${data.pnum}&mid=${mem.mid}&nickname=${data.nickname}&title=${data.title}">❤</a>
             		</c:if>
+            	</c:if>
             	 </span>
             	  <span class="d-block mb-3 text-white" data-aos="fade-up">${data.wdate} 
             	  <span class="mx-2 text-primary">&bullet;</span> by ${data.mid} <span class="mx-2 text-primary">&bullet;</span> 조회수 [${data.cnt}]</span>
@@ -86,7 +78,7 @@
            	<blockquote><p><b> 참고사항 : </b>${data.content}</p></blockquote>
 
             <div class="pt-5">
-              <p>Tags: <a href="#">#${data.location}</a></p>
+              <p>Tags: <a href="searchPost.do?condition=location&keyword=${data.location}">#${data.location}</a></p>
             </div>
 
 <!--  댓글 시작  -->

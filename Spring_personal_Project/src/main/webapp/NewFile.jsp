@@ -1,26 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-    <style>
-        .dellink{
-          display: none;
-        }
-        .thumb{
-          width : 100px;
-       	  height: 100px;
-       	  }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function () {
+           $("#email_addr").on("change",function () {
+               var $selected = $(this).val();
+               if($selected == "직접 입력"){
+                $("#email").prop("disabled", false);
+                $("#email").val("");
+               }else{
+                    $("#email").val($selected);
+                    $("#email").prop("disabled", true);
+               }
+               
+           }) 
+        });
+    </script>
 </head>
-   <script type="text/javascript" src="withPPjs/upload.js"></script>
 <body>
-	<input type="file" class="hidden_input" id="imageSelector"
-		name="imageSelector" accept="image/jpeg, image/jpg, image/png"
-		multiple />
-	<img src="" class="thumb"/>
-	<a href="javascript:void(0);" class="dellink">썸네일삭제</a>
+    <input type="text">@
+    <input type="text" id="email">
+    <select id="email_addr">
+        <option disabled selected>이메일을 선택해주세요.</option>
+        <option>직접 입력</option>
+        <option>naver.com</option>
+        <option>daum.net</option>
+        <option>gmail.com</option>
+        <option>hanmail.net</option>
+    </select>
 </body>
 </html>

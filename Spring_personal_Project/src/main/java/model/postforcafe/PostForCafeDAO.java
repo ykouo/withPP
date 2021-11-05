@@ -46,9 +46,12 @@ public class PostForCafeDAO {
 	private final String getPostListSQL = "SELECT * FROM POST_FOR_CAFE ORDER BY PNUM DESC";
 	private final String getMyPostListSQL = "SELECT * FROM POST_FOR_CAFE WHERE MID=? ORDER BY PNUM DESC";
 	private final String getPostCntSQL = "SELECT COUNT(*) FROM POST_FOR_CAFE";
+	private final String searchTitleCntSQL = "SELECT COUNT(*) FROM POST_FOR_CAFE WHERE TITLE LIKE '%'||?||'%'";
+	private final String searchNickCntSQL = "SELECT COUNT(*) FROM POST_FOR_CAFE WHERE NICKNAME LIKE '%'||?||'%'";
+	private final String searchLocationCntSQL = "SELECT COUNT(*) FROM POST_FOR_CAFE WHERE LOCATION LIKE '%'||?||'%'";
 	private final String searchPostSQL_Title = "SELECT * FROM POST_FOR_CAFE WHERE TITLE LIKE '%'||?||'%' ORDER BY PNUM DESC";
-	private final String searchPostSQL_Nickname = "SELECT * FROM POST_FOR_CAFE WHERE LOCATION LIKE '%'||?||'%' ORDER BY PNUM DESC";
-	private final String searchPostSQL_Location = "SELECT * FROM POST_FOR_CAFE WHERE NICKNAME LIKE '%'||?||'%' ORDER BY PNUM DESC";
+	private final String searchPostSQL_Nickname = "SELECT * FROM POST_FOR_CAFE WHERE NICKNAME LIKE '%'||?||'%' ORDER BY PNUM DESC";
+	private final String searchPostSQL_Location = "SELECT * FROM POST_FOR_CAFE WHERE LOCATION LIKE '%'||?||'%' ORDER BY PNUM DESC";
 
 	// jdbcTemplate 추가
 	@Autowired
@@ -158,13 +161,49 @@ public class PostForCafeDAO {
 		Object[] args = {vo.getKeyword()};
 		return jdbcTemplate.query(searchPostSQL_Title,args,new PostForCafeRowMapper());
 	}
-
+	
+	public int searchTitleCnt(PostForCafeVO vo) {
+		Object[] args = {vo.getKeyword()};
+		int total = jdbcTemplate.queryForObject(searchTitleCntSQL, args ,Integer.class);
+		System.out.println("searchTitleCnt=" + total);
+		return total;
+	}
+	public int searchNickCnt(PostForCafeVO vo) {
+		Object[] args = {vo.getKeyword()};
+		int total = jdbcTemplate.queryForObject(searchNickCntSQL, args ,Integer.class);
+		System.out.println("searchNickCnt=" + total);
+		return total;
+	}
+	public int searchLocationCnt(PostForCafeVO vo) {
+		Object[] args = {vo.getKeyword()};
+		int total = jdbcTemplate.queryForObject(searchLocationCntSQL, args ,Integer.class);
+		System.out.println("searchLocationCnt=" + total);
+		return total;
+	}
+	// 게시글 검색 TITLE PAGENATION 적용
+	public List<PostForCafeVO> searchTitleListPage(PostForCafeVO vo,int startRow, int endRow) {
+		System.out.println("PostForCafe DAO 출력 : getPostListTitleSearch");
+		System.out.println("여기 왔니?");
+		String searchTitleListSQL = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.PNUM,A.MID,A.NICKNAME,A.TITLE,A.THUMNAIL,A.CONTENT,A.POSTCODE,A.ROADADDRESS,A.DETAILADDRESS,A.PHONE,A.LOCATION,A.CNT,A.HEART,A.WDATE FROM (SELECT * FROM POST_FOR_CAFE WHERE TITLE LIKE '%'||?||'%' ORDER BY PNUM DESC) A) WHERE RNUM BETWEEN "
+				+ startRow + " AND " + endRow;			
+		Object[] args = {vo.getKeyword()};
+		return jdbcTemplate.query(searchTitleListSQL ,args,new PostForCafeRowMapper());
+	}
+	
 	// 게시글 검색 nickname
 	public List<PostForCafeVO> getPostListNickSearch(PostForCafeVO vo) {
 		System.out.println("PostForCafe DAO 출력 : getPostListNickSearch");
 		Object[] args = { vo.getKeyword()};
 		return jdbcTemplate.query(searchPostSQL_Nickname,args,new PostForCafeRowMapper());
 	}
+	// 게시글 검색 nickname PAGENATION 적용
+		public List<PostForCafeVO> searchNinknameListPage(PostForCafeVO vo,int startRow, int endRow) {
+			System.out.println("PostForCafe DAO 출력 : getPostListNickSearch");
+			String searchNicknameListSQL = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.PNUM,A.MID,A.NICKNAME,A.TITLE,A.THUMNAIL,A.CONTENT,A.POSTCODE,A.ROADADDRESS,A.DETAILADDRESS,A.PHONE,A.LOCATION,A.CNT,A.HEART,A.WDATE FROM (SELECT * FROM POST_FOR_CAFE WHERE NICKNAME LIKE '%'||?||'%' ORDER BY PNUM DESC) A) WHERE RNUM BETWEEN "
+					+ startRow + " AND " + endRow;			
+			Object[] args = {vo.getKeyword()};
+			return jdbcTemplate.query(searchNicknameListSQL,args,new PostForCafeRowMapper());
+		}
 
 	// 게시글 검색  location
 	public List<PostForCafeVO> getPostListLocationSearch(PostForCafeVO vo) {
@@ -172,4 +211,12 @@ public class PostForCafeDAO {
 		Object[] args = { vo.getKeyword()};
 		return jdbcTemplate.query(searchPostSQL_Location,args,new PostForCafeRowMapper());
 	}
+	// 게시글 검색  location  PAGENATION 적용
+		public List<PostForCafeVO> searchLocationListPage(PostForCafeVO vo,int startRow, int endRow) {
+			System.out.println("PostForCafe DAO 출력 : getPostListLocationSearch");
+			String searchLocationListSQL = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.PNUM,A.MID,A.NICKNAME,A.TITLE,A.THUMNAIL,A.CONTENT,A.POSTCODE,A.ROADADDRESS,A.DETAILADDRESS,A.PHONE,A.LOCATION,A.CNT,A.HEART,A.WDATE FROM (SELECT * FROM POST_FOR_CAFE WHERE LOCATION LIKE '%'||?||'%' ORDER BY PNUM DESC) A) WHERE RNUM BETWEEN "
+					+ startRow + " AND " + endRow;			
+			Object[] args = {vo.getKeyword()};
+			return jdbcTemplate.query(searchLocationListSQL,args,new PostForCafeRowMapper());
+		}
 }

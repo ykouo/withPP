@@ -21,15 +21,7 @@
 
 <body data-spy="scroll" data-target=".site-navbar-target"data-offset="300">
 	<div class="site-wrap" id="home-section">
-		<div class="site-mobile-menu site-navbar-target">
-			<div class="site-mobile-menu-header">
-				<div class="site-mobile-menu-close mt-3">
-					<span class="icon-close2 js-menu-toggle"></span>
-				</div>
-			</div>
-			<div class="site-mobile-menu-body"></div>
-		</div>
-	</div>
+		
 		<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 		<mytag:header />
 
@@ -75,16 +67,16 @@
 								</tr>
 								<tr>
 									<td class="category">TITLE</td>
-									<td colspan="2"><input id="title" type="text" class="textbox" name="title" required="required" style="resize:none;"></td>
+									<td colspan="2"><input id="title" type="text" class="textbox" name="title" style="resize:none;"></td>
 								</tr>
 								<tr>
 									<td class="category">CONTENT</td>
-									<td colspan="2"><textarea id="content"name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"></textarea></td>
+									<td colspan="2"><textarea id="content" name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)" style="resize:none;"></textarea></td>
 								</tr>
 								<tr>
 									<td class="category">LOCATION</td>
 									<td colspan="2">
-										<select class="textbox" id="location"  onchange="javascript:selectLocation();"name="location" required="required" style="resize:none;" >
+										<select class="textbox" id="location" name="location" required="required" >
 											<option value="서울">서울</option>
 											<option value="경기도">경기도</option>
 											<option value="인천">인천</option>
@@ -130,9 +122,8 @@
 				</div>
 
 			</div>
-
-
-		</div>
+	</div>
+</div>
 		
 
 <!-- footer 태그  -->
@@ -145,6 +136,7 @@
 	<script src="withPPjs/searchPost.js"></script>
 	<script src="withPPjs/beforeunload.js"></script>
 	<script src="withPPjs/autoHypen.js"></script>
+	<script src="withPPjs/resize.js"></script>
 </body>
 </html>
 
