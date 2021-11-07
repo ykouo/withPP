@@ -6,7 +6,6 @@
 <%@ taglib prefix="mytag" tagdir="/WEB-INF/tags" %>
 <!doctype html>
 <html lang="en">
-
   <head>
     <title>withPP - withPet</title>
     <!--  파비콘 추가  -->
@@ -16,14 +15,8 @@
 	<!-- styleLink모음 태그 -->
 	<mytag:styleLink/>    
   </head>
-
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-    
     <div class="site-wrap" id="home-section">
-
-
-
 	<!-- 메뉴/로그인/로그아웃/마이페이지 버튼 태그 -->
 	<mytag:header/>
     
@@ -44,8 +37,7 @@
         <div class="row align-items-center  justify-content-center">
 		<table>		
 		<c:forEach var="v" items="${Fdata}"> 
-         	
-         	<tr>
+			<tr>
             	<td>📌 </td>
             	<td><a href="showPost.do?pnum=${v.pnum}">${v.title}</a></td>
             </tr>
@@ -57,57 +49,18 @@
 		<div class="site-section-paging">
 		<div class="container">
 		<div class="row" style="justify-content: center;">
-		<%-- 	<ul id="paging" class="pagenation">
-					<c:if test="${paging.pageNum==paging.firstPageNum}">
-						 <span class="p-3"><a href="showFavoriteList.do?page=${paging.prevPageNum}">prev</a></span>
-					</c:if>
-					<c:if test="${paging.pageNum!=paging.firstPageNum}">
-						<span class="p-3"><a
-							href="showFavoriteList.do?page=${paging.prevPageNum}">prev</a></span>
-					</c:if>
-					<c:forEach var="i" begin="${paging.startPageNum}"
-						end="${paging.endPageNum}" step="1">
-						<c:choose>
-							<c:when test="${i eq paging.pageNum}">
-								<span class="p-3"><a class="page">${i}</a></span>
-							</c:when>
-							<c:otherwise>
-								<span class="p-3">
-									<a href="showFavoriteList.do?page=${i}"class="page">${i}</a>
-								</span>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-
-					<c:if test="${paging.pageNum==paging.finalPageNum}">
-						<span class="p-3">
-							<a href="showFavoriteList.do?page=${paging.nextPageNum}"class="button disabled">next</a>
-						</span>
-					</c:if>
-					<c:if test="${paging.pageNum!=paging.finalPageNum}">
-						<span class="p-3">
-							<a href="showFavoriteList.do?page=${paging.nextPageNum}"class="button">next</a>
-						</span>
-					</c:if> 
-			</ul> --%>
 		</div>
         </div>
       </div>
     </div>
-
     <div class="container">
 	<div class="row" style="justify-content: center;">
-
 	</div>
 	</div>
-
-
     <!-- footer 태그  -->
 	<mytag:footer/>
-
-    
 	<!-- js리스트 태그 -->
 	<mytag:js/>
   </body>
-
 </html>
+

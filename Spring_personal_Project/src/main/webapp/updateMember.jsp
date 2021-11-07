@@ -16,9 +16,9 @@
 	<mytag:styleLink/>    
 	<!-- 주소검색  -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  		<script type="text/javascript">
-	//우편번호 주소 등록==========================================================================================================================
-    function searchPostCode(){new daum.Postcode({
+  	<script type="text/javascript">
+  	//우편번호 주소 등록==========================================================================================================================
+	function searchPostCode(){new daum.Postcode({
 		oncomplete: function(data){
 	        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
 	        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
@@ -81,7 +81,6 @@
         </div>
       </div> 
 <!-- </메인 이미지>  -->
-
 		<div class="site-section">
 			<div class="container">
               <div class="row align-items-center justify-content-center">
@@ -116,8 +115,7 @@
 								<tr>
 									<td>PASSWORD CHECK</td>
 									<td colspan="2"><input type="password" id="passwordConfirm" onkeyup="javascript:passConfirm()" placeholder="비밀번호 확인" required="required" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$">
-									<span id="confirmMsg"></span></td>
-									
+									<span id="confirmMsg"></span></td>								
 								</tr>
 								<tr>
 									<td>NICKNAME</td>
@@ -178,11 +176,10 @@
 		<div class="site-section">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<form action="deleteMember.do" class="joinTable" method="post"
-						style="text-align: left">
-						<input type="hidden" name="mid" value="${mem.mid}"> <input
-							type="hidden" name="mpw" value="${mem.mpw}"> <input
-							type="submit" value="회원탈퇴">
+					<form action="deleteMember.do" class="joinTable" method="post" style="text-align: left">
+						<input type="hidden" name="mid" value="${mem.mid}"> 
+						<input type="hidden" name="mpw" value="${mem.mpw}"> 
+						<input id="quitMember" onclick="quitCheck()" type="submit" value="회원탈퇴">
 					</form>
 				</div>
 			</div>
@@ -202,6 +199,7 @@
 	<script src="withPPjs/passwordCheck.js"></script>
 	<script src="withPPjs/emailCheck.js"></script>
 	<script src="withPPjs/emailDupliCheck.js"></script>
+	<script src="withPPjs/signQuit.js"></script>
   </body>
 
 </html>

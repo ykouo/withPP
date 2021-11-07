@@ -74,7 +74,7 @@
 			<div class="row align-items-center justify-content-center">
                 <div class="col-lg-6 text-center ">
 					<div class="row align-items-center justify-content-center">
-						<form action="insertMember.do" class="joinTable" method="post" style="text-align: left" enctype="multipart/form-data">
+						<form action="insertMember.do" class="joinTable" method="post"  style="text-align: left" enctype="multipart/form-data">
 							<table>
 								<tr class="tableCenter">
 									<td class="category">미리보기</td>
@@ -92,8 +92,8 @@
 									<td>ID <b style="color: red">*</b></td>
 									<td colspan="2"><input type="text" name="mid" id="mid" style="width: 80%" required="required"> 
 									<input class="checkDupli" type="button" onclick="checkId();" value="중복"> 
-									<span class="id_ok">사용 가능한 아이디입니다.</span>
-									<span class="id_already">사용중인 아이디입니다.</span></td>
+									<span id="id_ok" class="id_ok">사용 가능한 아이디입니다.</span>
+									<span id="id_already" class="id_already">사용중인 아이디입니다.</span></td>
 								</tr>
 								<tr class="tableCenter">
 									<td>PASSWORD <b style="color: red">*</b></td>
@@ -151,7 +151,7 @@
 									<td colspan="2"><input type="radio" name="role" value="USER" checked="checked">회원</td>
 								</tr>
 								<tr class="tableCenter">
-									<td colspan="3"><input type="submit" value="회원가입"></td>
+									<td colspan="3"><input id=signUp" onclick="signUpCheck()"type="submit" value="회원가입"></td>
 								</tr>
 							</table>
 						</form>
@@ -173,6 +173,7 @@
 	<script src="withPPjs/emailCheck.js"></script>
 	<script src="withPPjs/emailDupliCheck.js"></script>
 	<script src="withPPjs/idCheck.js"></script>
+	<script src="withPPjs/signUp.js"></script>
 	<script src="withPPjs/passwordCheck.js"></script>
   </body>
 </html>

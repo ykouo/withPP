@@ -64,7 +64,6 @@ String reqURL="https://nid.naver.com/oauth2.0/token";
 		return access_token;
 		
 	}
-
 	@Override
 	public Map<String, Object> getUserInfo(String access_token) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();

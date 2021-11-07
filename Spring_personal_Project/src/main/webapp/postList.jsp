@@ -60,10 +60,10 @@
        	 </c:forEach>
        	 </div>
        	 </div>
-       	 </div>
-		<div class="site-section-paging">
-		<div class="container">
-		<div class="row" style="justify-content: center;">
+       	 <!-- </div> -->
+		<!-- <div class="site-section-paging"> -->
+<!-- 		<div class="container">
+ -->		<div class="row" style="justify-content: center;">
 			<ul id="paging" class="pagenation">
 					<c:if test="${paging.pageNum==paging.firstPageNum}">
 						 <span class="p-3"><a href="showPostList.do?page=${paging.prevPageNum}">prev</a></span>
@@ -99,9 +99,10 @@
 			</ul>
 		</div>
         </div>
-      </div>
-    </div>
-
+        </div>
+      <!-- </div> -->
+<!--     </div>
+ -->
     <div class="container">
 	<div class="row" style="justify-content: center;">
 		<form action="searchPost.do" method="post">

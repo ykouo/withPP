@@ -173,13 +173,13 @@
           </div>
           <div class="col-md-4 sidebar">
 
-
+		 <c:if test="${!empty mem}">
             <div class="sidebar-box">
               <img src="${mem.profileimage}" alt="Free Website Template by Free-Template.co" class="img-fluid mb-4 w-50 rounded-circle">
               <h3 class="text-black">${mem.nickname}</h3>
               <!-- <p><a href="#" class="btn btn-primary btn-md text-white">Read More</a></p> -->
             </div>
-
+		</c:if>
 
           </div>
         </div>

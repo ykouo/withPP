@@ -77,8 +77,7 @@ public class MailController {
 			mvo.setEmail(to);
 			System.out.println("메일발송 mvo: "+ mvo);
 			memberService.updatePwMember(mvo);
-			System.out.println("메일발송 완료");		
-			
+			System.out.println("메일발송 완료");				
 			}
 		}catch(Exception e){ 
 			System.out.println(e); 		
@@ -110,12 +109,10 @@ public class MailController {
 			messageHelper.setFrom(from); 
 			messageHelper.setSubject(subject); 
 			mailSender.send(message);
-			System.out.println("메일발송 완료");		
-			
+			System.out.println("메일발송 완료");				
 			}
 		}catch(Exception e){ 
-			//System.out.println(e); 
-			
+			//System.out.println(e); 		
 		}
 		return "<script>alert('MailSuccess:D');location.href='searchIdPw.jsp';</script>";
 	}	
