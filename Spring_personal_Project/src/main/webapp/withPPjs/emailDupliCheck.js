@@ -22,7 +22,6 @@ function checkEmail() {
 			} else {
 				$('.email_ok').css("display", "inline-block");
 				$('.email_already').css("display", "none");
-				email.focus();
 				return false;
 			}
 		},

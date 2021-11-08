@@ -17,19 +17,16 @@ function checkId(){
             	   $('.id_already').css("display","inline-block");
                    $('.id_ok').css("display", "none");
                    $("input[name='mid']").val("");
-                   return;
                }else{
             	   $('.id_ok').css("display","inline-block"); 
                    $('.id_already').css("display", "none");
-                   
-                   return;
                }
             },
             error:function(){
             	alert("에러입니다");
             }
         });
-     
+        
 };
  	
 

@@ -177,9 +177,9 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<form action="deleteMember.do" class="joinTable" method="post" style="text-align: left">
-						<input type="hidden" name="mid" value="${mem.mid}"> 
-						<input type="hidden" name="mpw" value="${mem.mpw}"> 
-						<input id="quitMember" onclick="quitCheck()" type="submit" value="회원탈퇴">
+						<input type="hidden" name="mid" id="mid" value="${mem.mid}"> 
+						<input type="hidden" name="mpw" id="mpw"  value="${mem.mpw}"> 
+						<input id="quitMember" onclick="quitCheck('${mem.mid}','${mem.mpw}');" type="button" value="회원탈퇴">
 					</form>
 				</div>
 			</div>

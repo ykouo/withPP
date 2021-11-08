@@ -94,7 +94,7 @@ public class MemberController {
 
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(MemberVO vo, Model model) {
-		System.out.println("업데이트 회원정보; " + vo);
+		System.out.println("회원탈퇴; " + vo);
 		memberService.deleteMember(vo);
 		return "logout.do";
 	}

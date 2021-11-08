@@ -151,7 +151,7 @@
 									<td colspan="2"><input type="radio" name="role" value="USER" checked="checked">회원</td>
 								</tr>
 								<tr class="tableCenter">
-									<td colspan="3"><input id=signUp" onclick="signUpCheck()"type="submit" value="회원가입"></td>
+									<td colspan="3"><input id="signUp"  type="submit" value="회원가입"></td>
 								</tr>
 							</table>
 						</form>

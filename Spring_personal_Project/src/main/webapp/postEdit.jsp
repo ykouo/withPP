@@ -76,7 +76,7 @@
 								</tr>
 								<tr>
 									<td class="category">CONTENT</td>
-									<td colspan="2"><textarea id="content"name="content" class="textbox" id="write"onkeyup="resize(this)" onkeydown="resize(this)"  style="resize:none;">${data.content}</textarea></td>
+									<td colspan="2"><textarea id="content"name="content" class="textbox" id="write" onkeyup="resize(this)" onkeydown="resize(this)"  style="resize:none;">${data.content}</textarea></td>
 								</tr>
 								<tr>
 									<td class="category">LOCATION</td>
@@ -138,6 +138,7 @@
 	<script src="withPPjs/searchPost.js"></script>
 	<script src="withPPjs/beforeunload.js"></script>
 	<script src="withPPjs/autoHypen.js"></script>
+	<script src="withPPjs/resize.js"></script>
 
 </body>
 </html>
